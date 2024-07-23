@@ -14,11 +14,12 @@
     <main>
         <section class="form-section">
             <h2>Teacher Login</h2>
-            <form action="/dashboard.html" method="post">
+            <form id="login">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
+                <p id="login-error" style="color: red;"></p>
                 <button type="submit">Login</button>
             </form>
 
