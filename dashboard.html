@@ -11,8 +11,8 @@
         <h1>Student Management System</h1>
         <nav>
             <ul>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#students"></a>Students</li>
+                <li><a href="#courses.html">Courses</a></li>
+                <li><a href="#student.html">Students</a></li>
                 <li><a href="index.html" id="logout">Logout</a></li>
             </ul>
         </nav>
@@ -25,8 +25,30 @@
         <section id="courses">
             <h2>Courses</h2>
             <form>
-                
+                <label for="course-search">Search Courses:</label>
+                <input type="text" id="course-search" name="course-search">
+                <button type="button" onclick="searchCourse()">Search</button>
             </form>
+            <button type="button" onclick="addCourse.html">Add Courses</button>
+            <article>
+                <ul id="course-list">
+                    <!-- list of courses -->
+                </ul>
+            </article>
+        </section>
+        <section id="students">
+            <h2>Students</h2>
+            <form>
+                <label for="student-search">Search Students:</label>
+                <input type="text" id="student-search" name="student-search">
+                <button type="button" onclick="searchStudent()">Search</button>
+            </form>
+            <button type="button" onclick="addStudent.html">Add Student</button>
+            <article>
+                <ul id="student-list">
+                    <!-- list of studentss -->
+                </ul>
+            </article>
         </section>
     </main>
     
