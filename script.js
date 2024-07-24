@@ -55,7 +55,11 @@ function handleResponse(event) {
                 };
                 storeLocalStorageUser(user);
                 console.log('User stored in local storage'); // Check if this log appears in the console
+                errorEl.style.color = 'green';
+                errorEl.textContent = 'Signup successful!';
+               setTimeout(() => {
                 window.location.href = 'dashboard.html';
+               }, 2000);
             }
         } else {
             errorEl.textContent = 'All fields are required';
@@ -86,8 +90,12 @@ function handleLoginResponse(event) {
 
     if (errorEl) {
         if (validateLogin(userName, pwd)) {
+            errorEl.style.color = 'green';
+            errorEl.textContent = 'Login sucessful!';
+            setTimeout(() => {
             // Redirect to dashboard.html after successful login
-            window.location.href = 'dashboard.html'; 
+            window.location.href = 'dashboard.html';
+            },2000);
         } else {
             errorEl.textContent = 'Invalid username or password';
         }
