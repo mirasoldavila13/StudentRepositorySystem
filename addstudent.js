@@ -31,6 +31,7 @@ function addStudent(event) {
 function studentTable() {
     if (document.getElementById('student-table')) {
         const studentTableBody = document.getElementById('student-table');
+
         const students = JSON.parse(localStorage.getItem('students')) || [];
 
         students.forEach(student => {
