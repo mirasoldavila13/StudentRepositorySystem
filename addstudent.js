@@ -40,7 +40,11 @@ function studentTable() {
             <td>${student.name}</tb>
             <td>${student.email}</tb>
             <td>${student.phone}</tb>
-            <td>${student.courseNumber}</tb>`
+            <td>${student.courseNumber}</tb>
+            <td>
+                <button onclick="updateStudent(${student.id})">Update</button>
+                <button onclick="deleteStudent(${student.id})">Delete</button>
+            </td>`;
             studentTableBody.appendChild(row);
         });
     }
