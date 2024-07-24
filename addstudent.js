@@ -29,8 +29,8 @@ function addStudent(event) {
 
 //Function to populate the student table in the student.html
 function studentTable() {
-    if (document.getElementById('student-table-body')) {
-        const studentTableBody = document.getElementById('student-table-body');
+    if (document.getElementById('student-table')) {
+        const studentTableBody = document.getElementById('student-table');
         const students = JSON.parse(localStorage.getItem('students')) || [];
 
         students.forEach(student => {
@@ -40,28 +40,8 @@ function studentTable() {
             <td>${student.name}</tb>
             <td>${student.email}</tb>
             <td>${student.phone}</tb>
-            <td>
-                <button onclick="updateStudent(${student.id})">Update</button>
-                <button onclick="deleteStudent(${student.id})">Delete</button>
-            </td>`;
+            <td>${student.courseNumber}</tb>`
             studentTableBody.appendChild(row);
         });
     }
-}
-
-// Function to display courses
-function displayCourses(courseList) {
-    const tableBody = document.getElementById('course-table-body');
-    tableBody.innerHTML = ''; // Clear existing rows
-    courseList.forEach(course => {
-        let row = `<tr>
-            <td>${course.id}</td>
-            <td>${course.name}</td>
-            <td>
-                <button onclick="editCourse(${course.id})">Update</button>
-                <button onclick="deleteCourse(${course.id})">Delete</button>
-            </td>
-        </tr>`;
-        tableBody.innerHTML += row;
-    });
-}
+};
