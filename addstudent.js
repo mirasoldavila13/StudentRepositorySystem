@@ -40,6 +40,7 @@ function studentTable() {
             <td>${student.name}</tb>
             <td>${student.email}</tb>
             <td>${student.phone}</tb>
+            <td>${student.courseNumber}</tb>
             <td>
                 <button onclick="updateStudent(${student.id})">Update</button>
                 <button onclick="deleteStudent(${student.id})">Delete</button>
@@ -49,3 +50,19 @@ function studentTable() {
     }
 }
 
+// Function to display courses
+function displayCourses(courseList) {
+    const tableBody = document.getElementById('course-table-body');
+    tableBody.innerHTML = ''; // Clear existing rows
+    courseList.forEach(course => {
+        let row = `<tr>
+            <td>${course.id}</td>
+            <td>${course.name}</td>
+            <td>
+                <button onclick="editCourse(${course.id})">Update</button>
+                <button onclick="deleteCourse(${course.id})">Delete</button>
+            </td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+}
