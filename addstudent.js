@@ -29,8 +29,9 @@ function addStudent(event) {
 
 //Function to populate the student table in the student.html
 function studentTable() {
-    if (document.getElementById('student-table-body')) {
-        const studentTableBody = document.getElementById('student-table-body');
+    if (document.getElementById('student-table')) {
+        const studentTableBody = document.getElementById('student-table');
+
         const students = JSON.parse(localStorage.getItem('students')) || [];
 
         students.forEach(student => {
@@ -40,6 +41,7 @@ function studentTable() {
             <td>${student.name}</tb>
             <td>${student.email}</tb>
             <td>${student.phone}</tb>
+            <td>${student.courseNumber}</tb>
             <td>
                 <button onclick="updateStudent(${student.id})">Update</button>
                 <button onclick="deleteStudent(${student.id})">Delete</button>
