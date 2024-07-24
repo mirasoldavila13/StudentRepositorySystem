@@ -24,8 +24,7 @@ function displayCourses(courseList) {
             <td>${course.id}</td>
             <td>${course.name}</td>
             <td>
-                <button onclick="editStudent(${course.id})">Add</button>
-                <button onclick="editCourse(${course.id})">Edit</button>
+                <button onclick="editCourse(${course.id})">Update</button>
                 <button onclick="deleteCourse(${course.id})">Delete</button>
             </td>
         </tr>`;
@@ -42,8 +41,7 @@ function displayStudents(studentList) {
             <td>${student.id}</td>
             <td>${student.name}</td>
             <td>
-                <button onclick="editStudent(${student.id})">Add</button>
-                <button onclick="editStudent(${student.id})">Edit</button>
+                <button onclick="editStudent(${student.id})">Update</button>
                 <button onclick="deleteStudent(${student.id})">Delete</button>
             </td>
         </tr>`;
