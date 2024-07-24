@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Management System</title>
+    <link rel="stylesheet" href="./assets/stylesheet.css">
+</head>
+<body>
+    <header>
+        <h1>Student Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="#courses.html">Courses</a></li>
+                <li><a href="#student.html">Students</a></li>
+                <li><a href="index.html" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="teacher-info">
+            <!-- populate with javascript -->
+            <h2>Welcome, <span id="teacherName">[Teacher's Name]</span>!</h2>
+       </section>
+
+        <section id="course-management">
+            <h2>Course Management</h2>
+            <form id="search-course">
+                <label for="search-course-input">Search Courses:</label>
+                <input type="text" id="search-course-input" name="search-course" placeholder="Enter course name or ID">
+                <button type="submit">Search</button>
+            </form>
+            <table>
+                <caption>List of Courses</caption>
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="course-table-body">
+                    <!-- list rows dynamically -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="students-management">
+            <h2>Student Management</h2>
+            <form id="student-search-form">
+                <label for="student-search-input">Search Students:</label>
+                <input type="text" id="student-search-input" name="student-search" placeholder="Enter student name or ID">
+                <button type="button">Search</button>
+            </form>
+            <table>
+                <caption>List of Students</caption>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="student-table-body">
+                    <!-- list rows dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Student Management System</p>
+    </footer>
+    <script src="dashboard.js"></script>
+</body>
+</html>

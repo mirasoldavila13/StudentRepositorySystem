@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Student Management System</title>
+    <title>Student Management System</title>
 </head>
 <body>
-    <header>
-        <h1>Sign Up</h1>
-    </header>
+   <main>
+    <form id="clssignup">
+        <h3>Sign up</h3>
+          <label for="username">Username</label>
+          <input placeholder="Username" id="username" />
+          <label for="pwd">Password</label>
+          <input type="password" placeholder="Password" id="pwd" />
+          <label for="confirmpwd">Confirm Password</label>
+          <input type="password" placeholder="Confirm Password" id="confirmpwd"/>
+          <p id="error" style="color: red;"></p>
+          <button type="submit">Sign up</button>
+    </form>
     
-    <main>
-        <!-- Sign Up form will be added here -->
-    </main>
-    <footer>
-        <p>&copy; 2024 Student Management System</p>
-    </footer>
-    <script src="script.js"></script>
+   </main> 
 </body>
+<footer>
+    <p>&copy; 2024 Student Management System</p>
+</footer>
+<script src="script.js"></script>
 </html>
