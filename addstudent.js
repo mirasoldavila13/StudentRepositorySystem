@@ -1,11 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const studentForm = document.getElementById('add-student');
-    
     if (studentForm) {
         studentForm.addEventListener('submit', addStudent);
     };
-
-    studentTable();
 });
 
 //Function to add a new student to local storage
@@ -25,45 +22,4 @@ function addStudent(event) {
     } else {
         alert('Please fill out all fields');
     }
-}
-
-//Function to populate the student table in the student.html
-function studentTable() {
-    if (document.getElementById('student-table')) {
-        const studentTableBody = document.getElementById('student-table');
-
-        const students = JSON.parse(localStorage.getItem('students')) || [];
-
-        students.forEach(student => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-            <td>${student.id}</tb>
-            <td>${student.name}</tb>
-            <td>${student.email}</tb>
-            <td>${student.phone}</tb>
-            <td>${student.courseNumber}</tb>
-            <td>
-                <button onclick="updateStudent(${student.id})">Update</button>
-                <button onclick="deleteStudent(${student.id})">Delete</button>
-            </td>`;
-            studentTableBody.appendChild(row);
-        });
-    }
-}
-
-// Function to display courses
-function displayCourses(courseList) {
-    const tableBody = document.getElementById('course-table-body');
-    tableBody.innerHTML = ''; // Clear existing rows
-    courseList.forEach(course => {
-        let row = `<tr>
-            <td>${course.id}</td>
-            <td>${course.name}</td>
-            <td>
-                <button onclick="editCourse(${course.id})">Update</button>
-                <button onclick="deleteCourse(${course.id})">Delete</button>
-            </td>
-        </tr>`;
-        tableBody.innerHTML += row;
-    });
 }
