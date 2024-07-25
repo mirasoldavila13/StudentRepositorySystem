@@ -30,6 +30,10 @@
                 <label for="search-course-input">Search Courses:</label>
                 <input type="text" id="search-course-input" name="search-course" placeholder="Enter course name or ID">
                 <button type="submit">Search</button>
+                <button type="button" id="reset-course-search">Reset</button>
+                <a href="addCourse.html">
+                    <button type="button">Add Course</button>   
+                </a>
             </form>
             <table>
                 <caption>List of Courses</caption>
@@ -37,6 +41,7 @@
                     <tr>
                         <th>Course ID</th>
                         <th>Course Name</th>
+                        <th>Amount of Courses</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -44,10 +49,8 @@
                     <!-- list rows dynamically -->
                 </tbody>
             </table>
-            <a href="addCourse.html">
-                <button type="button">Add Course</button>   
-            </a>
 
+               
         </section>
 
         <section id="students-management">
@@ -55,7 +58,11 @@
             <form id="student-search-form">
                 <label for="student-search-input">Search Students:</label>
                 <input type="text" id="student-search-input" name="student-search" placeholder="Enter student name or ID">
-                <button type="button">Search</button>
+                <button type="submit">Search</button>
+                <button type="button" id="reset-student-search">Reset</button>
+                <a href="addstudent.html">
+                    <button type="button">Add Student</button>  
+                </a>
             </form>
             <table>
                 <caption>List of Students</caption>
@@ -63,6 +70,7 @@
                     <tr>
                         <th>Student ID</th>
                         <th>Student Name</th>
+                        <th>Amount of Courses</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -70,10 +78,8 @@
                     <!-- list rows dynamically -->
                 </tbody>
             </table>
-            <a href="addstudent.html">
-                <button type="button" id="addStudent.html">Add Student</button>  
-            </a>
 
+                
          </section>
     </main>
     <footer>
