@@ -11,24 +11,80 @@
         <h1>Student Management System</h1>
         <nav>
             <ul>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#students"></a>Students</li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="course.html">Courses</a></li>
+                <li><a href="student.html">Students</a></li>
                 <li><a href="index.html" id="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Welcome, <span id="teacherName"></span>!</h2>
+        <section class="teacher-info">
+            <!-- populate with javascript -->
+            <h2>Welcome, <span id="teacherName">[Teacher's Name]</span>!</h2>
+       </section>
+
+        <section id="course-management">
+            <h2>Course Management</h2>
+            <form id="search-course">
+                <label for="search-course-input">Search Courses:</label>
+                <input type="text" id="search-course-input" name="search-course" placeholder="Enter course name or ID">
+                <button type="submit">Search</button>
+                <button type="button" id="reset-course-search">Reset</button>
+                <a href="addCourse.html">
+                    <button type="button">Add Course</button>   
+                </a>
+            </form>
+            <table>
+                <caption>List of Courses</caption>
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Amount of Courses</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="course-table-body">
+                    <!-- list rows dynamically -->
+                </tbody>
+            </table>
+
+               
         </section>
 
-        <section id="courses">
-            <h2>Courses</h2>
-            <form>
-                
+        <section id="students-management">
+            <h2>Student Management</h2>
+            <form id="student-search-form">
+                <label for="student-search-input">Search Students:</label>
+                <input type="text" id="student-search-input" name="student-search" placeholder="Enter student name or ID">
+                <button type="submit">Search</button>
+                <button type="button" id="reset-student-search">Reset</button>
+                <a href="addstudent.html">
+                    <button type="button">Add Student</button>  
+                </a>
             </form>
-        </section>
+            <table>
+                <caption>List of Students</caption>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Amount of Courses</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="student-table-body">
+                    <!-- list rows dynamically -->
+                </tbody>
+            </table>
+
+                
+         </section>
     </main>
-    
+    <footer>
+        <p>&copy; 2024 Student Management System</p>
+    </footer>
+    <script src="dashboard.js"></script>
 </body>
 </html>

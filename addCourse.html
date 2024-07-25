@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System - Add Course</title>
+</head>
+<body>
+    <h3 style="font-size: 2rem; font-weight: bold; text-align: center;">Add Course Details</h3>
+    <form id="formid" style="display: flex;">
+        <div style="display: flex; flex-direction: column; padding: 1rem; margin-right: 1rem;">
+            <div style="display: flex; align-items: center;">
+                <label for="classId" style="color: #333;">Class ID</label>
+                <input type="text" id="classId" placeholder="Enter ID" style="border: 1px solid #ccc; border-radius: 0.25rem; padding: 0.5rem;">
+            </div>
+            <div style="display: flex; align-items: center;">
+                <label for="className" style="color: #333;">Class Name</label>
+                <input type="text" id="className" placeholder="Enter Name" style="border: 1px solid #ccc; border-radius: 0.25rem; padding: 0.5rem;">
+            </div>
+        
+            <button type="submit" style="background-color: #007bff; color: #fff; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem; border: none; cursor: pointer;">Add Course</button>
+            <p id="msgsuc" style="color: green;"></p>
+        </div>
+    </form>
+    <footer style="background-color: #eee; padding: 1rem; margin-top: 2rem;">
+        <p style="text-align: center;">&copy; 2024 Student Management System</p>
+    </footer>
+    <script src="./addcourse.js"></script>
+</body>
+</html>

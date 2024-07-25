@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students - Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Student Management Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="logout.html">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="student-list">
+            <h3>Student Classroom</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Number of Courses</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="student-table">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Student Management System</p>
+    </footer>
+    
+    <script src="students.js"></script>
+</body>
+</html>
