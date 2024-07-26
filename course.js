@@ -3,7 +3,7 @@ const table = document.querySelector('table');
 
 //Function to read the course from local storage
 let readLocalStorageCourse = function(){
-    let courseData = JSON.parse(localStorage.getItem('courseData'));
+    let courseData = JSON.parse(localStorage.getItem('courses'));
     if(!courseData){
         return;
     }
@@ -36,7 +36,7 @@ function handleUpdate(event,row){
         nameCell.contentEditable = false;
         console.log(courses);
         console.log(updatedCourses);
-        localStorage.setItem('courseData', JSON.stringify(updatedCourses));
+        localStorage.setItem('courses', JSON.stringify(updatedCourses));
     } else {
         idCell.contentEditable = true;
         nameCell.contentEditable = true;
@@ -54,7 +54,7 @@ function handleUpdate(event,row){
         row.remove();
         const courseId = idCell.textContent;
         const updatedCourses = courses.filter(course => course.id !== courseId);
-        localStorage.setItem('courseData', JSON.stringify(updatedCourses));
+        localStorage.setItem('courses', JSON.stringify(updatedCourses));
         // table.removeChild(row);
         };
        
