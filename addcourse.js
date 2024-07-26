@@ -16,10 +16,9 @@ function storeLocalStoragecourse(course){
     courseData.push(course);
     localStorage.setItem('courseData',JSON.stringify(courseData));
 };
-// Create a function that handles the form signup submission. Grab the form data and store it in local storage, then redirect to the landing page using the `redirectPage` function. If the form is submitted with missing or invalid or existing user data, display an error message to the user.
+// Create a function that handles the addition of newcourse. 
 function handleAddCourse(event){
-   
-        debugger;
+           debugger;
     event.preventDefault();
     console.log(event);
     const classId = document.querySelector("#classId").value.trim();
@@ -40,8 +39,6 @@ function handleAddCourse(event){
         
      };
 };
-
-
 
 // Add an event listener to the form on submit. Call the function to handle the form submission.
 formEl.addEventListener("submit",handleAddCourse);
