@@ -23,11 +23,12 @@ function handleAddCourse(event){
     console.log(event);
     const classId = document.querySelector("#classId").value.trim();
     const className = document.querySelector("#className").value.trim();
-  
+    const noofstudents = parseInt(document.querySelector("#AmountofStudents").value.trim());
     if(classId && className){
        let course = { 
             id: classId,
             name: className,
+            studentCount:noofstudents
         };
         storeLocalStoragecourse(course);
     console.log("Course added successfully!");
@@ -35,7 +36,7 @@ function handleAddCourse(event){
     messageEl.textContent = "Course added successfully!";
     document.querySelector("#classId").value = "";
     document.querySelector("#className").value = "";
-   
+    document.querySelector("#AmountofStudents").value = "";
         
      };
 };
