@@ -1,24 +1,9 @@
 // Get a reference to the table element
 const table = document.querySelector('table');
 
-// Create the table header row
-// const headerRow = document.createElement('tr');
-// const headers = ['Course Id', 'Course Name', 'Credits'];
-// headers.forEach(headerText => {
-//     const header = document.createElement('th');
-//     header.textContent = headerText;
-//     headerRow.appendChild(header);
-// });
-// table.appendChild(headerRow);
-
-// Create the table body rows
-// const courses = [
-//     { id: '0101', name: 'Mathematics' },
-//     { id: '0202', name: 'Computer Science' },
-//     { id: '0303', name: 'Physics' },
-// ];
+//Function to read the course from local storage
 let readLocalStorageCourse = function(){
-    let courseData = JSON.parse(localStorage.getItem('courseData'));
+    let courseData = JSON.parse(localStorage.getItem('courses'));
     if(!courseData){
         return;
     }
@@ -26,6 +11,7 @@ let readLocalStorageCourse = function(){
 };
 let courses = readLocalStorageCourse();
 
+//Function to handle update action 
 function handleUpdate(event,row){
     debugger;
     event.stopPropagation() 
@@ -33,29 +19,31 @@ function handleUpdate(event,row){
     //const row = updateButton.parentNode;
     const idCell = row.querySelector('td:nth-child(1)');
     const nameCell = row.querySelector('td:nth-child(2)');
-    console.log(idCell.contentEditable)
-    if ((idCell.contentEditable === 'true' )&& (nameCell.contentEditable === 'true')) 
-        {
-            const idCellValue = idCell.textContent;
-            const nameCellValue = nameCell.textContent;
-            const rowIndex = Array.from(table.rows).indexOf(row);
-            const courseId = idCell.textContent;
-            const updatedCourses = courses.map((course, index) => {
-                if (index === rowIndex) {
-                    return { id: idCellValue, name: nameCellValue };
-                }
-                return course;
-            });
-            localStorage.setItem('courseData', JSON.stringify(updatedCourses));
-       
-        }
-        else{
-    
+    console.log(idCell.contentEditable);
+    if (idCell.contentEditable === 'true' && nameCell.contentEditable === 'true') {
+        let courses = readLocalStorageCourse();
+        const idCellValue = idCell.textContent;
+        const nameCellValue = nameCell.textContent;
+        let rowIndex = (Array.from(table.rows).indexOf(row));
+        rowIndex = rowIndex - 1;
+        let updatedCourses = courses.map((course, index) => {
+            if (index === rowIndex) {
+                return { id: idCellValue, name: nameCellValue };
+            }
+            return course;
+        });
+        idCell.contentEditable = false;
+        nameCell.contentEditable = false;
+        console.log(courses);
+        console.log(updatedCourses);
+        localStorage.setItem('courses', JSON.stringify(updatedCourses));
+    } else {
         idCell.contentEditable = true;
         nameCell.contentEditable = true;
-        }
+    }
     };
-   
+  
+    //Function to handel course Delete action
     function handleDelete(event,row){
         debugger;
         event.stopPropagation() 
@@ -66,12 +54,12 @@ function handleUpdate(event,row){
         row.remove();
         const courseId = idCell.textContent;
         const updatedCourses = courses.filter(course => course.id !== courseId);
-        localStorage.setItem('courseData', JSON.stringify(updatedCourses));
+        localStorage.setItem('courses', JSON.stringify(updatedCourses));
         // table.removeChild(row);
         };
        
     
-
+// Adding course details into the table for display
 courses.forEach(course => {
     const row = document.createElement('tr');
     const idCell = document.createElement('td');
@@ -106,7 +94,4 @@ courses.forEach(course => {
 // Append the table to the document body
 const sectionEl = document.querySelector('section')
 sectionEl.appendChild(table);
-
-// Function to edit the row on selecting update button
-const updateEl = document.querySelector('#update');
 
