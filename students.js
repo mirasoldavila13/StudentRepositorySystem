@@ -42,6 +42,10 @@ function updateStudent(event, row) {
     const cells = row.querySelectorAll('td');
     const isEditable = cells[0].contentEditable === 'true';
 
+    for (let i = 0; i < 5; i++) {
+        cells[i].contentEditable = isEditable ? 'false' : 'true';
+    }
+
     if (isEditable) {
         const updatedStudent = {
             id: parseInt(cells[0].textContent),
@@ -59,10 +63,8 @@ function updateStudent(event, row) {
             localStorage.setItem('students', JSON.stringify(students));
         }
 
-        cells.forEach(cell => cell.contentEditable = 'false');
         updateButton.textContent = 'Update';
     } else {
-        cells.forEach(cell => cell.contentEditable = 'true');
         updateButton.textContent = 'Save';
     }
 }
