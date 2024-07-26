@@ -4,7 +4,7 @@ const courseButton = document.querySelector("#courseButton");
 console.log(courseButton);
 // Function to read course from local storage
 let readLocalStorageCourse = function(){
-    let courseData = JSON.parse(localStorage.getItem('courseData'));
+    let courseData = JSON.parse(localStorage.getItem('courses'));
     if(!courseData){
         return [];
     }
@@ -14,7 +14,7 @@ let readLocalStorageCourse = function(){
 function storeLocalStoragecourse(course){
     let courseData = readLocalStorageCourse();
     courseData.push(course);
-    localStorage.setItem('courseData',JSON.stringify(courseData));
+    localStorage.setItem('courses',JSON.stringify(courseData));
 };
 // Create a function that handles the addition of newcourse. 
 function handleAddCourse(event){
