@@ -8,29 +8,29 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
     <header class="bg-blue-900 text-white p-4">
-        <h1 class="text-2xl font-bold">Student Management Dashboard</h1>
+        <h1 class="text-3xl font-bold">Student Management Dashboard</h1>
         <nav>
-            <ul>
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="index.html">Log Out</a></li>
+            <ul class="flex space-x-4 mt-2">
+                <li><a href="dashboard.html" class="text-white hover:text-gray-300">Dashboard</a></li>
+                <li><a href="courses.html" class="text-white hover:text-gray-300">Courses</a></li>
+                <li><a href="index.html" class="text-white hover:text-gray-300">Log Out</a></li>
             </ul>
         </nav>
     </header>
     
-    <main class="p-4">
-        <section class="student-list bg-white p-6 rounded shadow-md">
-            <h3 class="text-xl font-semibold mb-4">Student Classroom</h3>
+    <main class="p-6">
+        <section class="student-list bg-white shadow-md rounded p-4">
+            <h3 class="text-2xl font-semibold mb-4">Student Classroom</h3>
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>
-                        <th>Student ID</th>
-                        <th>Student Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Amount of Courses</th>
-                        <th>Course's IDs</th>
-                        <th>Action</th>
+                        <th class="py-2">Student ID</th>
+                        <th class="py-2">Student Name</th>
+                        <th class="py-2">Email</th>
+                        <th class="py-2">Phone Number</th>
+                        <th class="py-2">Amount of Courses</th>
+                        <th class="py-2">Course's IDs</th>
+                        <th class="py-2">Action</th>
                     </tr>
                 </thead>
                 <tbody id="studentTableBody">
@@ -40,7 +40,7 @@
         </section>
     </main>
     
-    <footer class="bg-blue-900 text-white text-center p-4 mt-4">
+    <footer class="bg-blue-900 text-white text-center p-4">
         <p>&copy; 2024 Student Management System</p>
     </footer>
     <script src="common.js"></script>
