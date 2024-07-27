@@ -1,32 +1,38 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Student Management System</title>
-    <link rel="stylesheet" href="./assets/stylesheet.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Login to Student Management System</h1>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <header class="bg-blue-900 text-white p-4">
+        <h1 class="text-2xl text-center">Login to Student Management System</h1>
     </header>
     
-    <main>
-        <section class="form-section">
-            <h2>Teacher Login</h2>
-            <form id="login">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <p id="login-error" style="color: red;"></p>
-                <button type="submit">Login</button>
+    <main class="flex-grow flex items-center justify-center">
+        <section class="form-section bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 class="text-xl font-semibold mb-4">Teacher Login</h2>
+            <form id="login" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-gray-700">Username:</label>
+                    <input type="text" id="username" name="username" required class="mt-1 p-2 w-full border rounded">
+                </div>
+                <div>
+                    <label for="password" class="block text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password" required class="mt-1 p-2 w-full border rounded">
+                </div>
+                <p id="login-error" class="text-red-500"></p>
+                <button type="submit" class="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700">Login</button>
             </form>
         </section>
     </main>
-    <footer>
-        <button onclick="window.location.href='index.html'">Return to Landing Page</button>
-        <p>&copy; 2024 Student Management System</p>
+    
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <button onclick="window.location.href='index.html'" class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700">Return to Landing Page</button>
+        <p class="mt-4">&copy; 2024 Student Management System</p>
     </footer>
     <script src="script.js"></script>
 </body>
