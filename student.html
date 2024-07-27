@@ -10,10 +10,10 @@
     <header class="bg-blue-900 text-white p-4">
         <h1 class="text-2xl font-bold">Student Management Dashboard</h1>
         <nav>
-            <ul class="flex space-x-4 mt-2">
-                <li><a href="dashboard.html" class="text-white hover:text-gray-200 active">Dashboard</a></li>
-                <li><a href="courses.html" class="text-white hover:text-gray-200">Courses</a></li>
-                <li><a href="logout.html" class="text-white hover:text-gray-200">Log Out</a></li>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="index.html">Log Out</a></li>
             </ul>
         </nav>
     </header>
@@ -23,16 +23,17 @@
             <h3 class="text-xl font-semibold mb-4">Student Classroom</h3>
             <table class="min-w-full bg-white">
                 <thead>
-                    <tr class="w-full bg-gray-200">
-                        <th class="py-2 px-4 border-b">ID</th>
-                        <th class="py-2 px-4 border-b">Name</th>
-                        <th class="py-2 px-4 border-b">Email</th>
-                        <th class="py-2 px-4 border-b">Phone</th>
-                        <th class="py-2 px-4 border-b">Number of Courses</th>
-                        <th class="py-2 px-4 border-b">Action</th>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Amount of Courses</th>
+                        <th>Course's IDs</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="student-table">
+                <tbody id="studentTableBody">
                     <!-- Rows will be dynamically added here -->
                 </tbody>
             </table>
@@ -42,7 +43,7 @@
     <footer class="bg-blue-900 text-white text-center p-4 mt-4">
         <p>&copy; 2024 Student Management System</p>
     </footer>
-    
-    <script src="addstudent.js"></script>
+    <script src="common.js"></script>
+    <script src="students.js"></script>
 </body>
 </html>

@@ -6,45 +6,39 @@
     <title>Add Students</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-    <header class="bg-blue-900 text-white p-4">
-        <h1 class="text-2xl">Student Management System</h1>
+<body>
+    <header>
+        <h1>Add Student - Student Management System</h1>
         <nav>
-            <ul class="flex space-x-4 mt-2">
-                <li><a href="dashboard.html" class="text-white hover:text-gray-200">Dashboard</a></li>
-                <li><a href="courses.html" class="text-white hover:text-gray-200">Courses</a></li>
-                <li><a href="student.html" class="text-white hover:text-gray-200">Students</a></li>
-                <li><a href="index.html" id="logout" class="text-white hover:text-gray-200">Logout</a></li>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="student.html">Students</a></li>
+                <li><a href="index.html" id="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
-    <main class="max-w-md mx-auto bg-white p-8 mt-10 rounded shadow-md">
-        <form id="add-student">
-            <h3 class="text-xl font-semibold mb-4">Add New Student</h3>
-            <div class="mb-4">
-                <label for="student-name" class="block text-gray-700">Name:</label>
-                <input type="text" id="student-name" name="student-name" required class="mt-1 p-2 w-full border rounded">
-            </div>
-            <div class="mb-4">
-                <label for="student-email" class="block text-gray-700">Email:</label>
-                <input type="email" id="student-email" name="student-email" required class="mt-1 p-2 w-full border rounded">
-            </div>
-            <div class="mb-4">
-                <label for="student-phone" class="block text-gray-700">Phone:</label>
-                <input type="tel" id="student-phone" name="student-phone" required class="mt-1 p-2 w-full border rounded">
-            </div>
-            <div class="mb-4">
-                <label for="student-course-ids" class="block text-gray-700">Course IDs:</label>
-                <input type="text" id="student-course-ids" required class="mt-1 p-2 w-full border rounded">
-            </div>
-            <button type="submit" class="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700">Add Student</button>
-        </form>
-        <form id="add-course">
-            <input type="text" id="course-search" placeholder="Search by Course ID or Name" required>
-            <button type="submit">Add Course to Student</button>
-        </form>
+    <main>
+        <section id="add-student">
+        <form id="add-student-form">
+                <h2>Add New Student</h2>
+                <label for="student-name">Name:</label>
+                <input type="text" id="student-name" name="student-name" required>
+                <label for="student-email">Email:</label>
+                <input type="email" id="student-email" name="student-email" required>
+                <label for="student-phone">Phone:</label>
+                <input type="tel" id="student-phone" name="student-phone" required>
+                <label for="course-ids">Course ID's:</label>
+                <input type="text" id="course-ids" name="course-ids" required>
+                <button type="submit">Add Student</button>
+                <button type="button">Cancel</button>
+            </form>
+        </section>
     </main>
-
+    <footer>
+        <p>&copy; 2024 Student Management System</p>
+    </footer>
+    <script src="common.js"></script>
     <script src="addstudent.js"></script>
 </body>
 </html>
