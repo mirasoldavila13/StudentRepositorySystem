@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Student Management Dashboard</h1>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-900 text-white p-4">
+        <h1 class="text-2xl font-bold">Student Management Dashboard</h1>
         <nav>
             <ul>
                 <li><a href="dashboard.html" class="active">Dashboard</a></li>
@@ -17,10 +18,10 @@
         </nav>
     </header>
     
-    <main>
-        <section class="student-list">
-            <h3>Student Classroom</h3>
-            <table>
+    <main class="p-4">
+        <section class="student-list bg-white p-6 rounded shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Student Classroom</h3>
+            <table class="min-w-full bg-white">
                 <thead>
                     <tr>
                         <th>Student ID</th>
@@ -39,7 +40,7 @@
         </section>
     </main>
     
-    <footer>
+    <footer class="bg-blue-900 text-white text-center p-4 mt-4">
         <p>&copy; 2024 Student Management System</p>
     </footer>
     <script src="common.js"></script>
