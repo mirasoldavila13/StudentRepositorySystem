@@ -1,68 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-    studentTable();
+document.addEventListener('DOMContentLoaded', function() {
+    initializeLocalStorage();
+    displayStudents();
 });
 
 //Function to populate the student table in the student.html
-function studentTable() {
-    if (document.getElementById('student-table')) {
-        const studentTableBody = document.getElementById('student-table');
+function displayStudents() {
+    const students = getStudents();
+    const studentTableBody = document.getElementById('studentTableBody');
+    if (!studentTableBody) {
+        console.error('displayStudents: Table body element not found for ID: studentTableBody');
+        return;
+    }
+    studentTableBody.innerHTML = ''; // Clear existing content
 
-        const students = JSON.parse(localStorage.getItem('students')) || [];
-
-        students.forEach(student => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-            <td>${student.id}</tb>
-            <td>${student.name}</tb>
-            <td>${student.email}</tb>
-            <td>${student.phone}</tb>
-            <td>${student.courseNumber}</tb>
+    students.forEach(student => {
+        const courseList = student.courseIds.join(', ');
+        const courseCount = student.courseCount || student.courseIds.length; // Ensure courseCount is set correctly
+        console.log(`Student ID: ${student.id}, Course Count: ${courseCount}`); // Debugging statement
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.phone}</td>
+            <td>${courseCount}</td>
+            <td>${courseList}</td>
             <td>
-                <button onclick="updateStudent(event, this.closest('tr'))">Update</button>
-                <button onclick="deleteStudent(${student.id})">Delete</button>
-            </td>`;
-            studentTableBody.appendChild(row);
-        });
-    }
+                <button onclick="editStudent(${student.id}, displayStudents)">Edit</button>
+                <button onclick="deleteStudent(${student.id}, displayStudents)">Delete</button>
+            </td>
+        `;
+        studentTableBody.appendChild(row);
+    });
 }
 
-//Function to delete student
-function deleteStudent(id) {
-    const students = JSON.parse(localStorage.getItem('students')) || [];
-    const updateStudent = students.filter(student => student.id !== id );
-    localStorage.setItem('students', JSON.stringify(updateStudent));
-    window.location.reload();
-}
-
-//Function to update students
-function updateStudent(event, row) {
-    event.stopPropagation();
-
-    const updateButton = event.target;
-    const cells = row.querySelectorAll('td');
-    const isEditable = cells[0].contentEditable === 'true';
-
-    if (isEditable) {
-        const updatedStudent = {
-            id: parseInt(cells[0].textContent),
-            name: cells[1].textContent,
-            email: cells[2].textContent,
-            phone: cells[3].textContent,
-            courseNumber: cells[4].textContent
-        };
-
-        const students = JSON.parse(localStorage.getItem('students')) || [];
-        const studentIndex = students.findIndex(student => student.id === updatedStudent.id);
-
-        if (studentIndex > -1) {
-            students[studentIndex] = updatedStudent;
-            localStorage.setItem('students', JSON.stringify(students));
-        }
-
-        cells.forEach(cell => cell.contentEditable = 'false');
-        updateButton.textContent = 'Update';
-    } else {
-        cells.forEach(cell => cell.contentEditable = 'true');
-        updateButton.textContent = 'Save';
-    }
+function searchStudents(query, displayFunction) {
+    query = query.toLowerCase();
+    const students = getStudents();
+    const filteredStudents = students.filter(student =>
+        student.name.toLowerCase().includes(query) ||
+        student.id.toString().includes(query) ||
+        student.email.toLowerCase().includes(query) ||
+        student.phone.includes(query)
+    );
+    displayFunction(filteredStudents);
 }

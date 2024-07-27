@@ -7,10 +7,10 @@
 </head>
 <body>
     <header>
-        <h1>Student Management System</h1>
+        <h1>Add Student - Student Management System</h1>
         <nav>
             <ul>
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="student.html">Students</a></li>
                 <li><a href="index.html" id="logout">Logout</a></li>
@@ -18,21 +18,26 @@
         </nav>
     </header>
     <main>
-        <form id="add-student">
-            <h3>Add New Student</h3>
-            <label for="student-name">Name:</label>
-            <input type="text" id="student-name" name="student-name" required>
-            
-            <label for="student-email">Email:</label>
-            <input type="email" id="student-email" name="student-email" required>
-            
-            <label for="student-phone">Phone:</label>
-            <input type="tel" id="student-phone" name="student-phone" required>
-            
-            <button type="submit">Add Student</button>
-        </form>
+        <section id="add-student">
+        <form id="add-student-form">
+                <h2>Add New Student</h2>
+                <label for="student-name">Name:</label>
+                <input type="text" id="student-name" name="student-name" required>
+                <label for="student-email">Email:</label>
+                <input type="email" id="student-email" name="student-email" required>
+                <label for="student-phone">Phone:</label>
+                <input type="tel" id="student-phone" name="student-phone" required>
+                <label for="course-ids">Course ID's:</label>
+                <input type="text" id="course-ids" name="course-ids" required>
+                <button type="submit">Add Student</button>
+                <button type="button">Cancel</button>
+            </form>
+        </section>
     </main>
-
+    <footer>
+        <p>&copy; 2024 Student Management System</p>
+    </footer>
+    <script src="common.js"></script>
     <script src="addstudent.js"></script>
 </body>
 </html>

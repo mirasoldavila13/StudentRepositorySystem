@@ -12,7 +12,7 @@
             <ul>
                 <li><a href="dashboard.html" class="active">Dashboard</a></li>
                 <li><a href="courses.html">Courses</a></li>
-                <li><a href="logout.html">Log Out</a></li>
+                <li><a href="index.html">Log Out</a></li>
             </ul>
         </nav>
     </header>
@@ -23,15 +23,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Number of Courses</th>
+                        <th>Phone Number</th>
+                        <th>Amount of Courses</th>
+                        <th>Course's IDs</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="student-table">
+                <tbody id="studentTableBody">
                     <!-- Rows will be dynamically added here -->
                 </tbody>
             </table>
@@ -41,7 +42,7 @@
     <footer>
         <p>&copy; 2024 Student Management System</p>
     </footer>
-    
+    <script src="common.js"></script>
     <script src="students.js"></script>
 </body>
 </html>

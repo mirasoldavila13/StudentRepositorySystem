@@ -1,25 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const studentForm = document.getElementById('add-student');
-    if (studentForm) {
-        studentForm.addEventListener('submit', addStudent);
-    };
+document.getElementById('add-student-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    addNewStudent();
 });
 
 //Function to add a new student to local storage
-function addStudent(event) {
-    event.preventDefault();
+function addNewStudent() {
+    const name = document.getElementById('student-name').value;
+    const email = document.getElementById('student-email').value;
+    const phone = document.getElementById('student-phone').value;
+    const courseIds = document.getElementById('course-ids').value.split(',').map(id => parseInt(id.trim(), 10));
 
-    const name = document.querySelector('#student-name').value;
-    const email = document.querySelector('#student-email').value;
-    const phone = document.querySelector('#student-phone').value;
+    const students = getStudents();
+    const newStudentId = students.length > 0 ? students[students.length - 1].id + 1 : 1;
+    const newStudent ={
+        id: newStudentId,
+        name,
+        email,
+        phone,
+        courseIds,
+        courseCount: courseIds.length
+    };
 
-    if (name && email && phone) {
-        const students = JSON.parse(localStorage.getItem('students')) || [];
-        const id = students.length > 0 ? students[students.length - 1].id + 1 : 1; 
-        students.push({ id, name, email, phone });
-        localStorage.setItem('students', JSON.stringify(students));
-        window.location.href = 'student.html'; //redirect to dashboard page
-    } else {
-        alert('Please fill out all fields');
-    }
+    addStudent(newStudent);
+    window.location.href = 'student.html';
+
 }
