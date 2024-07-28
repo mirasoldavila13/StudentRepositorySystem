@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome- Student Management System</title>
-    <link rel="stylesheet" href="./assets/stylesheet.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @layer utilities {
+            .bg-custom-1 { background-color: #9f1239; }
+            .bg-custom-2 { background-color: #881337; }
+            .bg-custom-3 { background-color: #4c0519; }
+            .text-custom-1 { color: #9f1239; }
+            .text-custom-2 { color: #881337; }
+            .text-custom-3 { color: #4c0519; }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Welcome to the Student Management System</h1>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-custom-1 text-white p-4">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold">Welcome to the Student Management System</h1>
+        </div>
     </header>
-    <main>
-        <section class="intro">
-            <p>Welcome, teacher! To manage your courses and students, please choose one of the options below:</p>
-            <nav class="button-nav">
-                <a href="login.html" class="button">Login</a>
-                <a href="signup.html" class="button">Sign Up</a>
+    <main class="container mx-auto my-8">
+        <section class="bg-white p-6 rounded shadow-md">
+            <p class="mb-4">Welcome, teacher! To manage your courses and students, please choose one of the options below:</p>
+            <nav class="button-nav flex space-x-4">
+                <a href="login.html" class="bg-custom-1 text-white px-4 py-2 rounded">Login</a>
+                <a href="signup.html" class="bg-custom-2 text-white px-4 py-2 rounded">Sign Up</a>
             </nav>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Student Management System</p>
+    <footer class="bg-custom-1 text-white p-4 mt-8">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Student Management System</p>
+        </div>
     </footer>
     <script src="script.js"></script>
 </body>

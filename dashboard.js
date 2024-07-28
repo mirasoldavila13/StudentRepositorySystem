@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     initializeLocalStorage(); // Ensure any needed initial setup from common.js is ready
     displayAllCourses('dashboardCourseTableBody');  // Display courses in the dashboard
-    displayDashboardStudents();  // Display students in the dashboard
+    displayAllStudents('student-table-body');  // Display students in the dashboard
     displayTeacherName();  // Display the teacher's name
 
     // Attach event listeners for search forms
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('reset-student-search').addEventListener('click', function() {
         document.getElementById('student-search-input').value = '';
-        displayDashboardStudents();
+        displayAllStudents('student-table-body');
     });
 
     // Logout event listener
@@ -35,29 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayTeacherName() {
     const teacherName = localStorage.getItem('teacherName');
     document.getElementById('teacherName').textContent = teacherName;
-}
-
-
-// Display all students in the dashboard student table
-function displayDashboardStudents() {
-    const students = getStudents();
-    const studentTableBody = document.getElementById('student-table-body');
-    studentTableBody.innerHTML = ''; // Clear existing content
-
-    students.forEach(student => {
-        const courseCount = student.courseIds.length;
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${student.id}</td>
-            <td>${student.name}</td>
-            <td>${courseCount}</td>
-            <td>
-                <button onclick="editStudent(${student.id}, displayDashboardStudents)">Edit</button>
-                <button onclick="deleteStudent(${student.id}, displayDashboardStudents)">Delete</button>
-            </td>
-        `;
-        studentTableBody.appendChild(row);
-    });
 }
 
 // Search courses based on input
@@ -117,8 +94,8 @@ function displayFilteredDashboardStudents(filteredStudents) {
             <td>${student.name}</td>
             <td>${courseCount}</td>
             <td>
-                <button onclick="editStudent(${student.id}, displayDashboardStudents)">Edit</button>
-                <button onclick="deleteStudent(${student.id}, displayDashboardStudents)">Delete</button>
+                <button onclick="editStudent(${student.id}, displayAllStudents.bind(null, 'student-table-body'))">Edit</button>
+                <button onclick="deleteStudent(${student.id}, displayAllStudents.bind(null, 'student-table-body'))">Delete</button>
             </td>
         `;
         studentTableBody.appendChild(row);

@@ -3,26 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System</title>
+    <title>Sign Up - Student Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-custom-1 { background-color: #9f1239; }
+        .bg-custom-2 { background-color: #881337; }
+        .bg-custom-3 { background-color: #4c0519; }
+        .text-custom-1 { color: #9f1239; }
+        .text-custom-2 { color: #881337; }
+        .text-custom-3 { color: #4c0519; }
+    </style>
 </head>
-<body>
-   <main>
-    <form id="clssignup">
-        <h3>Sign up</h3>
-          <label for="username">Username</label>
-          <input placeholder="Username" id="username" />
-          <label for="pwd">Password</label>
-          <input type="password" placeholder="Password" id="pwd" />
-          <label for="confirmpwd">Confirm Password</label>
-          <input type="password" placeholder="Confirm Password" id="confirmpwd"/>
-          <p id="error" style="color: red;"></p>
-          <button type="submit">Sign up</button>
-    </form>
-    
-   </main> 
+<body class="bg-gray-100 text-gray-900">
+    <main class="container mx-auto my-8">
+        <section class="bg-white p-6 rounded shadow-md max-w-md mx-auto">
+            <form id="clssignup" class="space-y-4">
+                <h3 class="text-xl font-semibold mb-4">Sign Up</h3>
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="pwd" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="pwd" name="pwd" placeholder="Password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="confirmpwd" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" id="confirmpwd" name="confirmpwd" placeholder="Confirm Password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <p id="error" class="text-red-600"></p>
+                <div>
+                    <button type="submit" class="bg-custom-1 text-white px-4 py-2 rounded w-full">Sign Up</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-custom-1 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Student Management System</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
-<footer>
-    <p>&copy; 2024 Student Management System</p>
-</footer>
-<script src="script.js"></script>
 </html>
