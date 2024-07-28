@@ -24,6 +24,16 @@
         }
     </style>
 </head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-900 text-white p-4">
+        <h1 class="text-2xl font-bold">Student Management Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="index.html">Log Out</a></li>
+            </ul>
+        </nav>
 <body class="bg-gray-100 text-gray-900">
     <header class="bg-custom-1 text-white p-4">
         <div class="container mx-auto text-center">
@@ -38,6 +48,25 @@
         </div>
     </header>
     
+    <main class="p-4">
+        <section class="student-list bg-white p-6 rounded shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Student Classroom</h3>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Amount of Courses</th>
+                        <th>Course's IDs</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
     <main class="container mx-auto my-8">
         <section class="student-list center-content">
             <div class="w-full max-w-5xl">
