@@ -1,103 +1,60 @@
-document.addEventListener('DOMContentLoaded', function() {
-    initializeLocalStorage(); // Ensure any needed initial setup from common.js is ready
-    displayAllCourses('dashboardCourseTableBody');  // Display courses in the dashboard
-    displayAllStudents('student-table-body');  // Display students in the dashboard
-    displayTeacherName();  // Display the teacher's name
+document.addEventListener('DOMContentLoaded', function () {
+    initializeLocalStorage();
+    displayAllCourses('dashboardCourseTableBody');
+    displayAllStudents('student-table-body');
 
-    // Attach event listeners for search forms
-    document.getElementById('search-course').addEventListener('submit', function(event) {
-        event.preventDefault();
-        searchCourses();
+    document.getElementById('modal-ok').addEventListener('click', () => {
+        document.getElementById('modal').classList.add('hidden');
     });
 
-    document.getElementById('student-search-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        searchDashboardStudents();
+    document.getElementById('modal-cancel').addEventListener('click', () => {
+        document.getElementById('modal').classList.add('hidden');
     });
 
-    // Reset buttons for clearing search results
-    document.getElementById('reset-course-search').addEventListener('click', function() {
-        document.getElementById('search-course-input').value = '';
-        displayAllCourses('dashboardCourseTableBody');  // Ensure the correct ID is used here
-    });
+    function showModal(title, content, isPrompt = false, callback = null) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-content').innerText = content;
 
-    document.getElementById('reset-student-search').addEventListener('click', function() {
-        document.getElementById('student-search-input').value = '';
-        displayAllStudents('student-table-body');
-    });
+        const inputContainer = document.getElementById('modal-input-container');
+        const modalInput = document.getElementById('modal-input');
+        const modalCancel = document.getElementById('modal-cancel');
 
-    // Logout event listener
-    document.getElementById('logout').addEventListener('click', function() {
-        handleLogout();
-    });
+        if (isPrompt) {
+            inputContainer.classList.remove('hidden');
+            modalCancel.classList.remove('hidden');
+            modalInput.value = ''; // Clear the input field
+        } else {
+            inputContainer.classList.add('hidden');
+            modalCancel.classList.add('hidden');
+        }
+
+        document.getElementById('modal').classList.remove('hidden');
+
+        // Handle OK button click
+        document.getElementById('modal-ok').onclick = function() {
+            document.getElementById('modal').classList.add('hidden');
+            if (callback) {
+                const inputValue = isPrompt ? modalInput.value : null;
+                callback(inputValue);
+            }
+        };
+
+        // Handle Cancel button click
+        document.getElementById('modal-cancel').onclick = function() {
+            document.getElementById('modal').classList.add('hidden');
+        };
+    }
+
+    // Example usage of showModal
+    function exampleAlert() {
+        showModal('Alert', 'This is an alert message.');
+    }
+
+    function examplePrompt() {
+        showModal('Prompt', 'Enter your name:', true, function(inputValue) {
+            if (inputValue) {
+                console.log('User input:', inputValue);
+            }
+        });
+    }
 });
-
-function displayTeacherName() {
-    const teacherName = localStorage.getItem('teacherName');
-    document.getElementById('teacherName').textContent = teacherName;
-}
-
-// Search courses based on input
-function searchCourses() {
-    const query = document.getElementById('search-course-input').value.toLowerCase();
-    const courses = getCourses();
-
-    const filteredCourses = courses.filter(course =>
-        course.name.toLowerCase().includes(query) || course.id.toString().includes(query)
-    );
-
-    displayFilteredCourses(filteredCourses);
-}
-
-// Display filtered courses
-function displayFilteredCourses(filteredCourses) {
-    const courseTableBody = document.getElementById('dashboardCourseTableBody');
-    courseTableBody.innerHTML = ''; // Clear existing content
-
-    filteredCourses.forEach(course => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${course.id}</td>
-            <td>${course.name}</td>
-            <td>${course.studentCount}</td>
-            <td>
-                <button onclick="editCourse(${course.id}, 'dashboardCourseTableBody')">Edit</button>
-                <button onclick="deleteCourse(${course.id}, 'dashboardCourseTableBody')">Delete</button>
-            </td>
-        `;
-        courseTableBody.appendChild(row);
-    });
-}
-
-// Search students based on input
-function searchDashboardStudents() {
-    const query = document.getElementById('student-search-input').value.toLowerCase();
-    const students = getStudents();
-
-    const filteredStudents = students.filter(student =>
-        student.name.toLowerCase().includes(query) || student.id.toString().includes(query)
-    );
-
-    displayFilteredDashboardStudents(filteredStudents);
-}
-
-// Display filtered students
-function displayFilteredDashboardStudents(filteredStudents) {
-    const studentTableBody = document.getElementById('student-table-body');
-    studentTableBody.innerHTML = ''; // Clear existing content
-
-    filteredStudents.forEach(student => {
-        const courseCount = student.courseIds.length;
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${student.id}</td>
-            <td>${student.name}</td>
-            <td>${courseCount}</td>
-            <td>
-                <button onclick="editStudent(${student.id}, displayAllStudents.bind(null, 'student-table-body'))">Edit</button>
-                <button onclick="deleteStudent(${student.id}, displayAllStudents.bind(null, 'student-table-body'))">Delete</button>
-            </td>
-        `;
-        studentTableBody.appendChild(row);
-    });
-}
