@@ -4,29 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Student Management System</title>
-    <link rel="stylesheet" href="./assets/stylesheet.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        '2xs': '320px',
+                        'xs': '480px',
+                        'sm': '550px',
+                        'md': '800px',
+                        'lg': '1200px',
+                        'xl': '1440px',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .bg-custom-1 { background-color: #9f1239; }
+        .bg-custom-2 { background-color: #881337; }
+        .bg-custom-3 { background-color: #4c0519; }
+        .text-custom-1 { color: #9f1239; }
+        .text-custom-2 { color: #881337; }
+        .text-custom-3 { color: #4c0519; }
+        .center-nav {
+            display: flex;
+            justify-content: center;
+        }
+        .center-nav ul {
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Login to Student Management System</h1>
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+    <header class="bg-custom-1 text-white p-4 w-full">
+        <div class="container mx-auto text-center">
+            <h1 class="text-2xl font-bold">Login to Student Management System</h1>
+        </div>
     </header>
-    
-    <main>
-        <section class="form-section">
-            <h2>Teacher Login</h2>
-            <form id="login">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <p id="login-error" style="color: red;"></p>
-                <button type="submit">Login</button>
+    <main class="flex-grow flex items-center justify-center">
+        <section class="bg-white p-6 rounded shadow-md max-w-lg w-full mx-4 sm:mx-auto">
+            <h2 class="text-xl font-semibold mb-4 text-center">Teacher Login</h2>
+            <form id="login" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
+                    <input type="text" id="username" name="username" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <p id="login-error" class="text-red-600"></p>
+                <div class="flex justify-between">
+                    <button type="submit" class="bg-custom-1 text-white px-4 py-2 rounded w-full mr-2">Login</button>
+                    <button type="button" onclick="window.location.href='index.html'" class="bg-custom-2 text-white px-4 py-2 rounded w-full">Back</button>
+                </div>
             </form>
         </section>
     </main>
-    <footer>
-        <button onclick="window.location.href='index.html'">Return to Landing Page</button>
-        <p>&copy; 2024 Student Management System</p>
+    <footer class="bg-custom-1 text-white p-4 text-center w-full mt-auto">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Student Management System</p>
+        </div>
     </footer>
     <script src="script.js"></script>
 </body>

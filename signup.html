@@ -3,26 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System</title>
+    <title>Create Your Account - Student Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+       tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        '2xs': '320px',
+                        'xs': '480px',
+                        'sm': '550px',
+                        'md': '800px',
+                        'lg': '1200px',
+                        'xl': '1440px',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .bg-custom-1 { background-color: #9f1239; }
+        .bg-custom-2 { background-color: #881337; }
+        .bg-custom-3 { background-color: #4c0519; }
+        .text-custom-1 { color: #9f1239; }
+        .text-custom-2 { color: #881337; }
+        .text-custom-3 { color: #4c0519; }
+    </style>
 </head>
-<body>
-   <main>
-    <form id="clssignup">
-        <h3>Sign up</h3>
-          <label for="username">Username</label>
-          <input placeholder="Username" id="username" />
-          <label for="pwd">Password</label>
-          <input type="password" placeholder="Password" id="pwd" />
-          <label for="confirmpwd">Confirm Password</label>
-          <input type="password" placeholder="Confirm Password" id="confirmpwd"/>
-          <p id="error" style="color: red;"></p>
-          <button type="submit">Sign up</button>
-    </form>
-    
-   </main> 
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+    <header class="bg-custom-1 text-white p-4 w-full">
+        <div class="container mx-auto text-center">
+            <h1 class="text-2xl font-bold">Create Your Account - Student Management System</h1>
+        </div>
+    </header>
+    <main class="flex-grow flex items-center justify-center">
+        <section class="bg-white p-6 rounded shadow-md max-w-lg w-full mx-4 sm:mx-auto">
+            <form id="clssignup" class="space-y-4">
+                <h3 class="text-xl font-semibold mb-4 text-center">Sign Up</h3>
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="pwd" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="pwd" name="pwd" placeholder="Password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div>
+                    <label for="confirmpwd" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" id="confirmpwd" name="confirmpwd" placeholder="Confirm Password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <p id="error" class="text-red-600"></p>
+                <div class="flex justify-between">
+                    <button type="submit" class="bg-custom-1 text-white px-4 py-2 rounded w-full mr-2">Sign Up</button>
+                    <button type="button" onclick="window.location.href='index.html'" class="bg-custom-2 text-white px-4 py-2 rounded w-full">Back</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-custom-2 text-white p-4 text-center w-full mt-auto">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Student Management System</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
-<footer>
-    <p>&copy; 2024 Student Management System</p>
-</footer>
-<script src="script.js"></script>
 </html>

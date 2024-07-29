@@ -1,4 +1,4 @@
-// Common.js - Utility functions for handling local storage, courses, and students
+// Common.js - Utility functions for handling local storage, courses, students and modal interactions
 
 function initializeLocalStorage() {
     if (!localStorage.getItem('courses')) {
@@ -9,7 +9,20 @@ function initializeLocalStorage() {
             { id: 4, name: 'Exploring Computer Science', studentCount: 6 },
             { id: 5, name: 'Physics 201', studentCount: 3 },
             { id: 6, name: 'Chemistry 202', studentCount: 3 },
-            { id: 7, name: 'Literature 101', studentCount: 2 }
+            { id: 7, name: 'Literature 101', studentCount: 2 },
+            { id: 8, name: 'Art 110', studentCount: 4 },
+            { id: 9, name: 'Biology 203', studentCount: 5 },
+            { id: 10, name: 'Geography 104', studentCount: 3 },
+            { id: 11, name: 'Philosophy 101', studentCount: 2 },
+            { id: 12, name: 'Economics 201', studentCount: 4 },
+            { id: 13, name: 'Music 105', studentCount: 3 },
+            { id: 14, name: 'Astronomy 202', studentCount: 2 },
+            { id: 15, name: 'Statistics 301', studentCount: 6 },
+            { id: 16, name: 'Programming 101', studentCount: 5 },
+            { id: 17, name: 'Environmental Science 102', studentCount: 4 },
+            { id: 18, name: 'Psychology 103', studentCount: 3 },
+            { id: 19, name: 'Sociology 202', studentCount: 4 },
+            { id: 20, name: 'Political Science 301', studentCount: 2 }
         ]));
     }
 
@@ -28,7 +41,10 @@ function initializeLocalStorage() {
             { id: 11, name: 'Diana Prince', email: 'diana.prince@themyscira.com', phone: '555-7777', courseIds: [3, 4, 6] },
             { id: 12, name: 'Natasha Romanoff', email: 'natasha.romanoff@shield.com', phone: '555-6666', courseIds: [2, 5, 6] },
             { id: 13, name: 'Steve Rogers', email: 'steve.rogers@avengers.com', phone: '555-5555', courseIds: [1, 3, 6] },
-            { id: 14, name: 'Wanda Maximoff', email: 'wanda.maximoff@avengers.com', phone: '555-4444', courseIds: [4, 5, 7] }
+            { id: 14, name: 'Wanda Maximoff', email: 'wanda.maximoff@avengers.com', phone: '555-4444', courseIds: [4, 5, 7] },
+            { id: 15, name: 'Barry Allen', email: 'barry.allen@ccpd.com', phone: '555-3333', courseIds: [8, 9, 18] },
+            { id: 16, name: 'Oliver Queen', email: 'oliver.queen@qc.com', phone: '555-2222', courseIds: [10, 11, 19] },
+            { id: 17, name: 'Bruce Banner', email: 'bruce.banner@avengers.com', phone: '555-1111', courseIds: [12, 13, 20] }
         ]));
     }
 
@@ -50,7 +66,16 @@ function initializeLocalStorage() {
     }
 }
 
-// Function to display all courses in a specific table body
+// Function to add a new student to local storage
+function addStudent(student) {
+    const students = getStudents();
+    student.courseCount = student.courseIds.length;
+    students.push(student);
+    saveStudents(students);
+}
+
+// Other functions...
+
 function displayAllCourses(tableBodyId) {
     const courses = getCourses();
     const courseTableBody = document.getElementById(tableBodyId);
@@ -58,7 +83,7 @@ function displayAllCourses(tableBodyId) {
         console.error(`displayAllCourses: Table body element not found for ID: ${tableBodyId}`);
         return;
     }
-    courseTableBody.innerHTML = ''; // Clear existing content
+    courseTableBody.innerHTML = ''; 
 
     courses.forEach(course => {
         const row = document.createElement('tr');
@@ -72,6 +97,31 @@ function displayAllCourses(tableBodyId) {
             </td>
         `;
         courseTableBody.appendChild(row);
+    });
+}
+
+// Function to display all students in a specific table body
+function displayAllStudents(tableBodyId) {
+    const students = getStudents();
+    const studentTableBody = document.getElementById(tableBodyId);
+    if (!studentTableBody) {
+        console.error(`displayAllStudents: Table body element not found for ID: ${tableBodyId}`);
+        return;
+    }
+    studentTableBody.innerHTML = ''; 
+
+    students.forEach(student => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.courseIds.length}</td>
+            <td>
+                <button onclick="editStudent(${student.id}, displayAllStudents.bind(null, '${tableBodyId}'))">Edit</button>
+                <button onclick="deleteStudent(${student.id}, displayAllStudents.bind(null, '${tableBodyId}'))">Delete</button>
+            </td>
+        `;
+        studentTableBody.appendChild(row);
     });
 }
 
@@ -94,6 +144,7 @@ function saveUsers(users) {
         console.error('Error saving users:', error);
     }
 }
+
 // Fetch courses from local storage with error handling
 function getCourses() {
     try {
@@ -134,126 +185,163 @@ function saveCourses(courses) {
     }
 }
 
-// Student Functions
-function addStudent(student) {
-    const students = getStudents();
-    student.courseCount = student.courseIds.length;
-    students.push(student);
-    saveStudents(students);
-}
+// Reusable function to show modal prompts
+function showModal(title, message, isPrompt = false, callback = null) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalContent = modal.querySelector('#modal-content');
+    const modalInputContainer = modal.querySelector('#modal-input-container');
+    const modalInput = modal.querySelector('#modal-input');
+    const modalOk = modal.querySelector('#modal-ok');
+    const modalCancel = modal.querySelector('#modal-cancel');
 
-function editStudent(studentId, displayFunction) {
-    const students = getStudents();
-    const student = students.find(student => student.id === studentId);
+    modalTitle.textContent = title;
+    modalContent.textContent = message;
+    modalInputContainer.classList.toggle('hidden', !isPrompt);
 
-    if (!student) {
-        console.error(`Student with ID: ${studentId} not found.`);
-        return;
+    if (isPrompt) {
+        modalInput.value = '';
+        modalCancel.classList.remove('hidden');
+    } else {
+        modalCancel.classList.add('hidden');
     }
 
-    const newName = prompt('Enter new name:', student.name);
-    const newEmail = prompt('Enter new email:', student.email);
-    const newPhone = prompt('Enter new phone:', student.phone);
-    const newCourseIds = prompt('Enter new Course IDS:', student.courseIds.join(', ')).split(',').map(id => parseInt(id.trim(), 10));
+    modalOk.onclick = function () {
+        modal.classList.add('hidden');
+        if (callback) {
+            callback(isPrompt ? modalInput.value : null);
+        }
+    };
 
-    if (newName && newEmail && newPhone && newCourseIds) {
-        student.name = newName;
-        student.email = newEmail;
-        student.phone = newPhone;
-        student.courseIds = newCourseIds;
-         // Ensure courseCount is set correctl
-        student.courseCount = newCourseIds.length;
-        saveStudents(students);
-        // Refresh the student list using the provided display function
-        if (displayFunction){
-            displayFunction();  
-        } 
-    }
+    modalCancel.onclick = function () {
+        modal.classList.add('hidden');
+    };
+
+    modal.classList.remove('hidden');
 }
 
-
-function updateStudent(updatedStudent, displayFunction) {
-    let students = getStudents();
-    const index = students.findIndex(s => s.id === updatedStudent.id);
-    if (index !== -1) {
-        // Check course changes for updating course student counts
-        const oldCourseIds = students[index].courseIds;
-        const newCourseIds = updatedStudent.courseIds;
-
-        // Update course student counts based on the changes
-        updateCourseCounts(oldCourseIds, newCourseIds);
-
-        students[index] = updatedStudent;
-        tudents[index].courseCount = newCourseIds.length; 
-        saveStudents(students);
-        if (displayFunction){
-            displayFunction();  
-        }   
-    }
+function closeModal() {
+    document.getElementById('modal').classList.add('hidden');
 }
 
-function deleteStudent(studentId, displayFunction) {
-    let students = getStudents();
-    students = students.filter(s => s.id !== studentId);
-    saveStudents(students);
-    // Adjust course counts
-    updateCourseCountsOnStudentDeletion(studentId);
-    if (displayFunction){
-        displayFunction();  
-    }   
-}
-
-// Course Functions
+// Function to edit course
 function editCourse(courseId, tableBodyId) {
     const courses = getCourses();
     const course = courses.find(course => course.id === courseId);
 
     if (!course) {
-        console.error(`Course with ID: ${courseId} not found.`);
+        showModal('Error', `Course with ID: ${courseId} not found.`);
         return;
     }
 
-    const newName = prompt('Enter new course name:', course.name);
-    if (newName !== null && newName.trim() !== "" && !courseNameExists(courses, newName.trim(), courseId)) {
-        course.name = newName.trim();
-        saveCourses(courses); // Save the modified courses array back to local storage
-        displayAllCourses(tableBodyId); // Refresh the display to show updated course information
-    } else if (courseNameExists(courses, newName.trim(), courseId)) {
-        alert("Another course with this name already exists. Please choose a different name.");
-    }
+    showModal('Edit Course', 'Enter new course name:', true, function (newName) {
+        if (newName && newName.trim() !== "" && !courseNameExists(courses, newName.trim(), courseId)) {
+            course.name = newName.trim();
+            saveCourses(courses);
+            displayAllCourses(tableBodyId);
+        } else if (courseNameExists(courses, newName.trim(), courseId)) {
+            showModal('Error', "Another course with this name already exists. Please choose a different name.");
+        }
+    });
 }
 
+// Function to delete course
 function deleteCourse(courseId, tableBodyId) {
-    let courses = getCourses(); // Fetch all courses from local storage
-
-    // Find the specific course to check the student count
+    let courses = getCourses();
     const course = courses.find(c => c.id === courseId);
+
     if (!course) {
-        alert('Course not found.');
+        showModal('Error', 'Course not found.');
         return;
     }
 
-    // Check if the course has fewer than 3 students enrolled
     if (course.studentCount >= 3) {
-        alert('Cannot delete this course because it has 3 or more students enrolled.');
+        showModal('Error', 'Cannot delete this course because it has 3 or more students enrolled.');
         return;
     }
 
-    // Proceed to delete the course if it has less than 3 students
     courses = courses.filter(c => c.id !== courseId);
-    saveCourses(courses); // Save the updated list back to local storage
-    displayAllCourses(tableBodyId); // Refresh the course list display
-
-    alert('Course deleted successfully.');
+    saveCourses(courses);
+    displayAllCourses(tableBodyId);
+    showModal('Success', 'Course deleted successfully.');
 }
 
-function handleLogout() {
-    const users = localStorage.getItem('userData');
-    localStorage.clear();
-    localStorage.setItem('userData', users);
-    window.location.href = 'index.html';
+// Function to edit student
+function editStudent(studentId, displayFunction) {
+    const students = getStudents();
+    const student = students.find(student => student.id === studentId);
+
+    if (!student) {
+        showModal('Error', `Student with ID: ${studentId} not found.`);
+        return;
+    }
+
+    const fields = [
+        { label: 'Name', value: 'name' },
+        { label: 'Email', value: 'email' },
+        { label: 'Phone', value: 'phone' },
+        { label: 'Courses', value: 'courses' }
+    ];
+
+    showSelectionModal('Edit Student', fields, function (selectedFields) {
+        selectedFields.forEach(field => {
+            switch (field) {
+                case 'name':
+                    showEditFieldModal('Edit Student', 'Enter new name:', function (newName) {
+                        if (newName) student.name = newName;
+                    });
+                    break;
+                case 'email':
+                    showEditFieldModal('Edit Student', 'Enter new email:', function (newEmail) {
+                        if (newEmail) student.email = newEmail;
+                    });
+                    break;
+                case 'phone':
+                    showEditFieldModal('Edit Student', 'Enter new phone:', function (newPhone) {
+                        if (newPhone) student.phone = newPhone;
+                    });
+                    break;
+                case 'courses':
+                    showEditFieldModal('Edit Student', 'Enter new Course IDS (comma separated):', function (newCourseIds) {
+                        if (newCourseIds) {
+                            student.courseIds = newCourseIds.split(',').map(id => parseInt(id.trim(), 10));
+                            student.courseCount = student.courseIds.length;
+                        }
+                    });
+                    break;
+            }
+        });
+
+        saveStudents(students);
+        displayFunction();
+    });
+}
+// Function to delete student
+function deleteStudent(studentId, displayFunction) {
+    let students = getStudents();
+    students = students.filter(s => s.id !== studentId);
+    saveStudents(students);
+    updateCourseCountsOnStudentDeletion(studentId);
+    if (typeof displayFunction === 'function') {
+        displayFunction();
+    }
+    showModal('Success', 'Student deleted successfully.');
 }
 
+function courseNameExists(courses, newName, courseId) {
+    return courses.some(c => c.name.toLowerCase() === newName.toLowerCase() && c.id !== courseId);
+}
+
+// Update course counts when a student is deleted
+function updateCourseCountsOnStudentDeletion(studentId) {
+    const students = getStudents();
+    const student = students.find(s => s.id === studentId);
+    if (student) {
+        updateCourseCounts(student.courseIds, []);
+    }
+}
+
+// Update course counts based on changes in student enrollments
 function updateCourseCounts(oldCourseIds, newCourseIds) {
     const allCourses = getCourses();
 
@@ -280,27 +368,80 @@ function updateCourseCounts(oldCourseIds, newCourseIds) {
     saveCourses(allCourses);
 }
 
-function updateCourseCountInStudents(courseId, increase) {
-    const allCourses = getCourses();
-    const course = allCourses.find(c => c.id === courseId);
-    if (course) {
-        if (increase) {
-            course.studentCount += 1;
-        } else {
-            course.studentCount = Math.max(0, course.studentCount - 1);
+// Modal for selection
+function showSelectionModal(title, options, callback) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalContent = modal.querySelector('#modal-content');
+    const modalInputContainer = modal.querySelector('#modal-input-container');
+    const modalOk = modal.querySelector('#modal-ok');
+    const modalCancel = modal.querySelector('#modal-cancel');
+
+    modalTitle.textContent = title;
+    modalContent.innerHTML = options.map(option => `
+        <label>
+            <input type="checkbox" value="${option.value}" class="option-checkbox"> ${option.label}
+        </label>
+    `).join('<br>');
+
+    modalInputContainer.classList.add('hidden');
+    modalOk.textContent = 'Submit';
+    modalCancel.classList.remove('hidden');
+
+    modalOk.onclick = function () {
+        const selectedOptions = Array.from(modal.querySelectorAll('.option-checkbox:checked')).map(cb => ({
+            label: cb.parentElement.textContent.trim(),
+            value: cb.value
+        }));
+        modal.classList.add('hidden');
+        if (callback) {
+            callback(selectedOptions);
         }
-        saveCourses(allCourses);
-    }
+    };
+
+    modalCancel.onclick = function () {
+        modal.classList.add('hidden');
+    };
+
+    modal.classList.remove('hidden');
 }
 
-function updateCourseCountsOnStudentDeletion(studentId) {
-    const students = getStudents();
-    const student = students.find(s => s.id === studentId);
-    if (student) {
-        updateCourseCounts(student.courseIds, []);
-    }
+// Modal for editing individual fields
+function showEditFieldModal(title, promptText, callback) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalContent = modal.querySelector('#modal-content');
+    const modalInputContainer = modal.querySelector('#modal-input-container');
+    const modalInput = modal.querySelector('#modal-input');
+    const modalOk = modal.querySelector('#modal-ok');
+    const modalCancel = modal.querySelector('#modal-cancel');
+
+    modalTitle.textContent = title;
+    modalContent.textContent = promptText;
+    modalInputContainer.classList.remove('hidden');
+    modalInput.value = ''; // Clear previous input
+
+    modalOk.onclick = function () {
+        const inputValue = modalInput.value;
+        modal.classList.add('hidden');
+        if (callback) {
+            callback(inputValue);
+        }
+    };
+
+    modalCancel.onclick = function () {
+        modal.classList.add('hidden');
+    };
+
+    modal.classList.remove('hidden');
 }
 
-function courseNameExists(courses, newName, courseId) {
-    return courses.some(c => c.name.toLowerCase() === newName.toLowerCase() && c.id !== courseId);
+// Function to handle logout
+function handleLogout() {
+    const users = localStorage.getItem('users');
+    localStorage.clear();
+    if (users) {
+        localStorage.setItem('users', users);
+    }
+    window.location.href = 'index.html';
 }

@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     displayStudents();
 });
 
-//Function to populate the student table in the student.html
 function displayStudents() {
     const students = getStudents();
     const studentTableBody = document.getElementById('studentTableBody');
