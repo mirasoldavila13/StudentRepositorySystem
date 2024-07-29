@@ -1,22 +1,36 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     initializeLocalStorage();
     displayAllStudents('studentTableBody');
-    
-    document.getElementById('modal-ok').addEventListener('click', () => {
-        const modal = document.getElementById('modal');
-        const isPrompt = !modal.querySelector('#modal-input-container').classList.contains('hidden');
-        const inputValue = isPrompt ? document.getElementById('modal-input').value : null;
 
-        modal.classList.add('hidden');
+    const logoutBtn = document.getElementById('logout');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            console.log('Logout button clicked');
+            handleLogout();
+        });
+    }
 
-        if (modal.callback) {
-            modal.callback(inputValue);
-        }
-    });
+    const modalOkBtn = document.getElementById('modal-ok');
+    if (modalOkBtn) {
+        modalOkBtn.addEventListener('click', () => {
+            const modal = document.getElementById('modal');
+            const isPrompt = !modal.querySelector('#modal-input-container').classList.contains('hidden');
+            const inputValue = isPrompt ? document.getElementById('modal-input').value : null;
 
-    document.getElementById('modal-cancel').addEventListener('click', () => {
-        document.getElementById('modal').classList.add('hidden');
-    });
+            modal.classList.add('hidden');
+
+            if (modal.callback) {
+                modal.callback(inputValue);
+            }
+        });
+    }
+
+    const modalCancelBtn = document.getElementById('modal-cancel');
+    if (modalCancelBtn) {
+        modalCancelBtn.addEventListener('click', () => {
+            document.getElementById('modal').classList.add('hidden');
+        });
+    }
 });
 
 function displayAllStudents(tableBodyId) {

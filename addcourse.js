@@ -33,3 +33,8 @@ function addCourse() {
     console.log('Course added:', newCourse); // Debugging log
     window.location.href = 'courses.html';  // Redirect to courses page
 }
+
+document.getElementById('logout').addEventListener('click', function() {
+    console.log('Logout button clicked');
+    handleLogout();
+});

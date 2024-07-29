@@ -184,18 +184,13 @@
             };
         }
 
-        // Example usage of showModal
-        function exampleAlert() {
-            showModal('Alert', 'This is an alert message.');
-        }
 
-        function examplePrompt() {
-            showModal('Prompt', 'Enter your name:', true, function(inputValue) {
-                if (inputValue) {
-                    console.log('User input:', inputValue);
-                }
-            });
-        }
+        // Initialize data and display
+        window.onload = function() {
+            initializeLocalStorage();
+            displayAllCourses('dashboardCourseTableBody');
+            displayAllStudents('student-table-body');
+        };
     </script>
 </body>
 </html>

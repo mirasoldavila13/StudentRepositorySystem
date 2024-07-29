@@ -1,25 +1,25 @@
-//Create a variable that selects the form element which name for the signup page
+// Create a variable that selects the form element which name for the signup page
 const singupformEl = document.querySelector("#clssignup");
 const loginFormE1 = document.querySelector("#login");
 
-//function to read user data from local storage
-let readLocalStorageUser = function(){
+// Function to read user data from local storage
+let readLocalStorageUser = function() {
     let userData = JSON.parse(localStorage.getItem('userData'));
-    if(!userData){
+    if (!userData) {
         return [];
     }
     return userData;
 };
 
-//function to store user data in local storage
-let storeLocalStorageUser = function(user){
+// Function to store user data in local storage
+let storeLocalStorageUser = function(user) {
     let userData = readLocalStorageUser();
     userData.push(user);
     localStorage.setItem('userData', JSON.stringify(userData));
     console.log('data stored: ', userData);
 };
 
-// function to validate if a username already exists during singup
+// Function to validate if a username already exists during signup
 function validateUser(user) {
     let userData = readLocalStorageUser();
     for (let i = 0; i < userData.length; i++) {
@@ -34,6 +34,19 @@ function validateUser(user) {
     return true;
 }
 
+// Function to show modals
+function showModal(modalId, content) {
+    const modal = document.getElementById(modalId);
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.textContent = content;
+    modal.classList.remove('hidden');
+
+    const modalOkButton = modal.querySelector('.modal-ok');
+    modalOkButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+}
+
 // Create a function that handles the form signup submission. Grab the form data and store it in local storage, then redirect to the landing page using the `redirectPage` function. If the form is submitted with missing or invalid or existing user data, display an error message to the user.
 function handleResponse(event) {
     event.preventDefault();
@@ -46,7 +59,7 @@ function handleResponse(event) {
 
     if (errorEl) {
         if (pwd !== confirmpwd) {
-            errorEl.textContent = 'Passwords do not match';
+            showModal('error-modal', 'Passwords do not match');
         } else if (userName && pwd && confirmpwd) {
             if (validateUser(userName)) {
                 let user = { 
@@ -55,62 +68,76 @@ function handleResponse(event) {
                 };
                 storeLocalStorageUser(user);
                 console.log('User stored in local storage'); // Check if this log appears in the console
-                errorEl.style.color = 'green';
-                errorEl.textContent = 'Signup successful!';
-               setTimeout(() => {
-                window.location.href = 'dashboard.html';
-               }, 2000);
+                showModal('success-modal', 'Signup successful!');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
             }
         } else {
-            errorEl.textContent = 'All fields are required';
+            showModal('error-modal', 'All fields are required');
         }
     } else {
         console.error("Error element not found");
     }
 }
 
-//function to validate login credentials
-function validateLogin(userName, pwd){
+// Function to validate login credentials
+function validateLogin(userName, pwd) {
     let userData = readLocalStorageUser();
-    for(let i = 0; i < userData.length; i++){
-        if(userData[i].username === userName && userData[i].pwd === pwd){
+    for (let i = 0; i < userData.length; i++) {
+        if (userData[i].username === userName && userData[i].pwd === pwd) {
             return true;
         }
     }
     return false;
 }
 
-//function to handle login form submission
+// Function to handle login form submission
 function handleLoginResponse(event) {
     event.preventDefault();
-    
+
     const userName = document.querySelector("#username").value.trim();
     const pwd = document.querySelector("#password").value.trim();
     const errorEl = document.querySelector("#login-error");
 
     if (errorEl) {
         if (validateLogin(userName, pwd)) {
-            errorEl.style.color = 'green';
-            errorEl.textContent = 'Login sucessful!';
+            showModal('success-modal', 'Login successful!');
             setTimeout(() => {
-            // Redirect to dashboard.html after successful login
-            window.location.href = 'dashboard.html';
-            },2000);
+                window.location.href = 'dashboard.html';
+            }, 2000);
         } else {
-            errorEl.textContent = 'Invalid username or password';
+            showModal('error-modal', 'Invalid username or password');
         }
-    } 
-    else {
+    } else {
         console.error("Login error element not found.");
     }
 }
 
-
-//add event listeners to the form if they exist
-if(singupformEl){
-    singupformEl.addEventListener("submit",handleResponse);
+// Function to handle logout
+function handleLogout() {
+    const userData = localStorage.getItem('userData');
+    localStorage.clear();
+    if (userData) {
+        localStorage.setItem('userData', userData);
+    }
+    window.location.href = 'index.html';
 }
 
-if(loginFormE1){
+// Add event listeners for the logout button if it exists
+const logoutButton = document.getElementById('logout');
+if (logoutButton) {
+    logoutButton.addEventListener('click', function() {
+        console.log('Logout button clicked');
+        handleLogout();
+    });
+}
+
+// Add event listeners to the form if they exist
+if (singupformEl) {
+    singupformEl.addEventListener("submit", handleResponse);
+}
+
+if (loginFormE1) {
     loginFormE1.addEventListener("submit", handleLoginResponse);
 }

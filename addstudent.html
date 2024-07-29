@@ -46,7 +46,7 @@
                     <li><a href="dashboard.html">Dashboard</a></li>
                     <li><a href="courses.html">Courses</a></li>
                     <li><a href="student.html">Students</a></li>
-                    <li><a href="index.html">Log Out</a></li>
+                    <li><a href="index.html" id="logout">Log Out</a></li>
                 </ul>
             </nav>
         </div>
@@ -84,7 +84,6 @@
         </div>
     </footer>
 
-    <!-- Modal for alerts and prompts inside the common.js -->
     <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded shadow-lg p-6 w-1/3">
             <h2 id="modal-title" class="text-xl font-semibold mb-4"></h2>
@@ -95,6 +94,26 @@
             <div class="flex justify-end">
                 <button id="modal-cancel" class="bg-custom-2 text-white px-4 py-2 rounded mr-2 hidden">Cancel</button>
                 <button id="modal-ok" class="bg-custom-1 text-white px-4 py-2 rounded">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded shadow-lg p-6 w-1/3">
+            <h2 class="text-xl font-semibold mb-4">Success</h2>
+            <div id="success-modal-content" class="mb-4"></div>
+            <div class="flex justify-end">
+                <button id="success-modal-ok" class="bg-custom-1 text-white px-4 py-2 rounded">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="error-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded shadow-lg p-6 w-1/3">
+            <h2 class="text-xl font-semibold mb-4">Error</h2>
+            <div id="error-modal-content" class="mb-4"></div>
+            <div class="flex justify-end">
+                <button id="error-modal-ok" class="bg-custom-2 text-white px-4 py-2 rounded">OK</button>
             </div>
         </div>
     </div>

@@ -335,40 +335,9 @@ function handleMultipleEdits(student, selectedFields, displayFunction, students)
     });
 }
 
-function showEditFieldModal(title, promptText, callback) {
-    const modal = document.getElementById('modal');
-    const modalTitle = modal.querySelector('#modal-title');
-    const modalContent = modal.querySelector('#modal-content');
-    const modalInputContainer = modal.querySelector('#modal-input-container');
-    const modalInput = modal.querySelector('#modal-input');
-    const modalOk = modal.querySelector('#modal-ok');
-    const modalCancel = modal.querySelector('#modal-cancel');
 
-    modalTitle.textContent = title;
-    modalContent.textContent = promptText;
-    modalInputContainer.classList.remove('hidden');
-    modalInput.value = ''; // Clear previous input
 
-    const handleOkClick = () => {
-        const inputValue = modalInput.value;
-        modal.classList.add('hidden');
-        modalOk.removeEventListener('click', handleOkClick);
-        modalCancel.removeEventListener('click', handleCancelClick);
-        callback(inputValue);
-    };
-
-    const handleCancelClick = () => {
-        modal.classList.add('hidden');
-        modalOk.removeEventListener('click', handleOkClick);
-        modalCancel.removeEventListener('click', handleCancelClick);
-    };
-
-    modalOk.addEventListener('click', handleOkClick);
-    modalCancel.addEventListener('click', handleCancelClick);
-
-    modal.classList.remove('hidden');
-}
-
+// Modal for selection
 function showSelectionModal(title, options, callback) {
     const modal = document.getElementById('modal');
     const modalTitle = modal.querySelector('#modal-title');
@@ -411,22 +380,99 @@ function showSelectionModal(title, options, callback) {
     modal.classList.remove('hidden');
 }
 
-// Utility functions for handling local storage operations
+// Modal for editing individual fields
+function showEditFieldModal(title, promptText, callback) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalContent = modal.querySelector('#modal-content');
+    const modalInputContainer = modal.querySelector('#modal-input-container');
+    const modalInput = modal.querySelector('#modal-input');
+    const modalOk = modal.querySelector('#modal-ok');
+    const modalCancel = modal.querySelector('#modal-cancel');
 
-function getStudents() {
-    try {
-        const students = localStorage.getItem('students');
-        return students ? JSON.parse(students) : [];
-    } catch (error) {
-        console.error('Error fetching students:', error);
-        return [];
+    modalTitle.textContent = title;
+    modalContent.textContent = promptText;
+    modalInputContainer.classList.remove('hidden');
+    modalInput.value = ''; // Clear previous input
+
+    const handleOkClick = () => {
+        const inputValue = modalInput.value;
+        modal.classList.add('hidden');
+        modalOk.removeEventListener('click', handleOkClick);
+        modalCancel.removeEventListener('click', handleCancelClick);
+        callback(inputValue);
+    };
+
+    const handleCancelClick = () => {
+        modal.classList.add('hidden');
+        modalOk.removeEventListener('click', handleOkClick);
+        modalCancel.removeEventListener('click', handleCancelClick);
+    };
+
+    modalOk.addEventListener('click', handleOkClick);
+    modalCancel.addEventListener('click', handleCancelClick);
+
+    modal.classList.remove('hidden');
+}
+
+// Function to delete student
+function deleteStudent(studentId, displayFunction) {
+    let students = getStudents();
+    students = students.filter(s => s.id !== studentId);
+    saveStudents(students);
+    updateCourseCountsOnStudentDeletion(studentId);
+    if (typeof displayFunction === 'function') {
+        displayFunction();
+    }
+    showModal('Success', 'Student deleted successfully.');
+}
+
+function courseNameExists(courses, newName, courseId) {
+    return courses.some(c => c.name.toLowerCase() === newName.toLowerCase() && c.id !== courseId);
+}
+
+// Update course counts when a student is deleted
+function updateCourseCountsOnStudentDeletion(studentId) {
+    const students = getStudents();
+    const student = students.find(s => s.id === studentId);
+    if (student) {
+        updateCourseCounts(student.courseIds, []);
     }
 }
 
-function saveStudents(students) {
-    try {
-        localStorage.setItem('students', JSON.stringify(students));
-    } catch (error) {
-        console.error('Error saving students:', error);
+// Update course counts based on changes in student enrollments
+function updateCourseCounts(oldCourseIds, newCourseIds) {
+    const allCourses = getCourses();
+
+    // Decrease count for old courses not in new courses
+    oldCourseIds.forEach(id => {
+        if (!newCourseIds.includes(id)) {
+            const course = allCourses.find(c => c.id === id);
+            if (course) {
+                course.studentCount = Math.max(0, course.studentCount - 1);
+            }
+        }
+    });
+
+    // Increase count for new courses not in old courses
+    newCourseIds.forEach(id => {
+        if (!oldCourseIds.includes(id)) {
+            const course = allCourses.find(c => c.id === id);
+            if (course) {
+                course.studentCount += 1;
+            }
+        }
+    });
+
+    saveCourses(allCourses);
+}
+
+// Function to handle logout
+function handleLogout() {
+    const userData = localStorage.getItem('userData');
+    localStorage.clear();
+    if (userData) {
+        localStorage.setItem('userData', userData);
     }
+    window.location.href = 'index.html';
 }
