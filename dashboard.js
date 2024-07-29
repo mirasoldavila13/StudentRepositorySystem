@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeLocalStorage(); // Ensure any needed initial setup from common.js is ready
     displayAllCourses('dashboardCourseTableBody');  // Display courses in the dashboard
     displayAllStudents('student-table-body');  // Display students in the dashboard

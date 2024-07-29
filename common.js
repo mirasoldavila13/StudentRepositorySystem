@@ -284,38 +284,137 @@ function editStudent(studentId, displayFunction) {
     ];
 
     showSelectionModal('Edit Student', fields, function (selectedFields) {
-        selectedFields.forEach(field => {
-            switch (field) {
-                case 'name':
-                    showEditFieldModal('Edit Student', 'Enter new name:', function (newName) {
-                        if (newName) student.name = newName;
-                    });
-                    break;
-                case 'email':
-                    showEditFieldModal('Edit Student', 'Enter new email:', function (newEmail) {
-                        if (newEmail) student.email = newEmail;
-                    });
-                    break;
-                case 'phone':
-                    showEditFieldModal('Edit Student', 'Enter new phone:', function (newPhone) {
-                        if (newPhone) student.phone = newPhone;
-                    });
-                    break;
-                case 'courses':
-                    showEditFieldModal('Edit Student', 'Enter new Course IDS (comma separated):', function (newCourseIds) {
-                        if (newCourseIds) {
-                            student.courseIds = newCourseIds.split(',').map(id => parseInt(id.trim(), 10));
-                            student.courseCount = student.courseIds.length;
-                        }
-                    });
-                    break;
-            }
-        });
-
-        saveStudents(students);
-        displayFunction();
+        handleMultipleEdits(student, selectedFields, displayFunction, students);
     });
 }
+
+function handleMultipleEdits(student, selectedFields, displayFunction, students) {
+    if (selectedFields.length === 0) {
+        saveStudents(students);
+        displayFunction();
+        return;
+    }
+
+    const field = selectedFields.shift();
+    let promptText = '';
+
+    switch (field.value) {
+        case 'name':
+            promptText = 'Enter new name:';
+            break;
+        case 'email':
+            promptText = 'Enter new email:';
+            break;
+        case 'phone':
+            promptText = 'Enter new phone:';
+            break;
+        case 'courses':
+            promptText = 'Enter new Course IDs (comma separated):';
+            break;
+    }
+
+    showEditFieldModal('Edit Student', promptText, function (newValue) {
+        if (newValue) {
+            switch (field.value) {
+                case 'name':
+                    student.name = newValue;
+                    break;
+                case 'email':
+                    student.email = newValue;
+                    break;
+                case 'phone':
+                    student.phone = newValue;
+                    break;
+                case 'courses':
+                    student.courseIds = newValue.split(',').map(id => parseInt(id.trim(), 10));
+                    student.courseCount = student.courseIds.length;
+                    break;
+            }
+        }
+        handleMultipleEdits(student, selectedFields, displayFunction, students);
+    });
+}
+
+
+
+// Modal for selection
+function showSelectionModal(title, options, callback) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalContent = modal.querySelector('#modal-content');
+    const modalInputContainer = modal.querySelector('#modal-input-container');
+    const modalOk = modal.querySelector('#modal-ok');
+    const modalCancel = modal.querySelector('#modal-cancel');
+
+    modalTitle.textContent = title;
+    modalContent.innerHTML = options.map(option => `
+        <label>
+            <input type="checkbox" value="${option.value}" class="option-checkbox"> ${option.label}
+        </label>
+    `).join('<br>');
+
+    modalInputContainer.classList.add('hidden');
+    modalOk.textContent = 'Submit';
+    modalCancel.classList.remove('hidden');
+
+    const handleOkClick = () => {
+        const selectedOptions = Array.from(modal.querySelectorAll('.option-checkbox:checked')).map(cb => ({
+            label: cb.parentElement.textContent.trim(),
+            value: cb.value
+        }));
+        modal.classList.add('hidden');
+        modalOk.removeEventListener('click', handleOkClick);
+        modalCancel.removeEventListener('click', handleCancelClick);
+        callback(selectedOptions);
+    };
+
+    const handleCancelClick = () => {
+        modal.classList.add('hidden');
+        modalOk.removeEventListener('click', handleOkClick);
+        modalCancel.removeEventListener('click', handleCancelClick);
+    };
+
+    modalOk.addEventListener('click', handleOkClick);
+    modalCancel.addEventListener('click', handleCancelClick);
+
+    modal.classList.remove('hidden');
+}
+
+// Modal for editing individual fields
+function showEditFieldModal(title, promptText, callback) {
+    const modal = document.getElementById('modal');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalContent = modal.querySelector('#modal-content');
+    const modalInputContainer = modal.querySelector('#modal-input-container');
+    const modalInput = modal.querySelector('#modal-input');
+    const modalOk = modal.querySelector('#modal-ok');
+    const modalCancel = modal.querySelector('#modal-cancel');
+
+    modalTitle.textContent = title;
+    modalContent.textContent = promptText;
+    modalInputContainer.classList.remove('hidden');
+    modalInput.value = ''; // Clear previous input
+
+    const handleOkClick = () => {
+        const inputValue = modalInput.value;
+        modal.classList.add('hidden');
+        modalOk.removeEventListener('click', handleOkClick);
+        modalCancel.removeEventListener('click', handleCancelClick);
+        callback(inputValue);
+    };
+
+    const handleCancelClick = () => {
+        modal.classList.add('hidden');
+        modalOk.removeEventListener('click', handleOkClick);
+        modalCancel.removeEventListener('click', handleCancelClick);
+    };
+
+    modalOk.addEventListener('click', handleOkClick);
+    modalCancel.addEventListener('click', handleCancelClick);
+
+    modal.classList.remove('hidden');
+}
+
 // Function to delete student
 function deleteStudent(studentId, displayFunction) {
     let students = getStudents();
@@ -368,80 +467,12 @@ function updateCourseCounts(oldCourseIds, newCourseIds) {
     saveCourses(allCourses);
 }
 
-// Modal for selection
-function showSelectionModal(title, options, callback) {
-    const modal = document.getElementById('modal');
-    const modalTitle = modal.querySelector('#modal-title');
-    const modalContent = modal.querySelector('#modal-content');
-    const modalInputContainer = modal.querySelector('#modal-input-container');
-    const modalOk = modal.querySelector('#modal-ok');
-    const modalCancel = modal.querySelector('#modal-cancel');
-
-    modalTitle.textContent = title;
-    modalContent.innerHTML = options.map(option => `
-        <label>
-            <input type="checkbox" value="${option.value}" class="option-checkbox"> ${option.label}
-        </label>
-    `).join('<br>');
-
-    modalInputContainer.classList.add('hidden');
-    modalOk.textContent = 'Submit';
-    modalCancel.classList.remove('hidden');
-
-    modalOk.onclick = function () {
-        const selectedOptions = Array.from(modal.querySelectorAll('.option-checkbox:checked')).map(cb => ({
-            label: cb.parentElement.textContent.trim(),
-            value: cb.value
-        }));
-        modal.classList.add('hidden');
-        if (callback) {
-            callback(selectedOptions);
-        }
-    };
-
-    modalCancel.onclick = function () {
-        modal.classList.add('hidden');
-    };
-
-    modal.classList.remove('hidden');
-}
-
-// Modal for editing individual fields
-function showEditFieldModal(title, promptText, callback) {
-    const modal = document.getElementById('modal');
-    const modalTitle = modal.querySelector('#modal-title');
-    const modalContent = modal.querySelector('#modal-content');
-    const modalInputContainer = modal.querySelector('#modal-input-container');
-    const modalInput = modal.querySelector('#modal-input');
-    const modalOk = modal.querySelector('#modal-ok');
-    const modalCancel = modal.querySelector('#modal-cancel');
-
-    modalTitle.textContent = title;
-    modalContent.textContent = promptText;
-    modalInputContainer.classList.remove('hidden');
-    modalInput.value = ''; // Clear previous input
-
-    modalOk.onclick = function () {
-        const inputValue = modalInput.value;
-        modal.classList.add('hidden');
-        if (callback) {
-            callback(inputValue);
-        }
-    };
-
-    modalCancel.onclick = function () {
-        modal.classList.add('hidden');
-    };
-
-    modal.classList.remove('hidden');
-}
-
 // Function to handle logout
 function handleLogout() {
-    const users = localStorage.getItem('users');
+    const userData = localStorage.getItem('userData');
     localStorage.clear();
-    if (users) {
-        localStorage.setItem('users', users);
+    if (userData) {
+        localStorage.setItem('userData', userData);
     }
     window.location.href = 'index.html';
 }
