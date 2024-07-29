@@ -3,39 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome- Student Management System</title>
+    <title>Welcome to Student Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        '2xs': '320px',
+                        'xs': '480px',
+                        'sm': '550px',
+                        'md': '800px',
+                        'lg': '1200px',
+                        'xl': '1440px',
+                    },
+                },
+            },
+        }
+    </script>
     <style>
-        @layer utilities {
-            .bg-custom-1 { background-color: #9f1239; }
-            .bg-custom-2 { background-color: #881337; }
-            .bg-custom-3 { background-color: #4c0519; }
-            .text-custom-1 { color: #9f1239; }
-            .text-custom-2 { color: #881337; }
-            .text-custom-3 { color: #4c0519; }
+        .bg-custom-1 { background-color: #9f1239; }
+        .bg-custom-2 { background-color: #881337; }
+        .bg-custom-3 { background-color: #4c0519; }
+        .text-custom-1 { color: #9f1239; }
+        .text-custom-2 { color: #881337; }
+        .text-custom-3 { color: #4c0519; }
+        .center-nav {
+            display: flex;
+            justify-content: center;
+        }
+        .center-nav ul {
+            display: flex;
+            gap: 1rem;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
     <header class="bg-custom-1 text-white p-4">
-        <div class="container mx-auto">
-            <h1 class="text-2xl font-bold">Welcome to the Student Management System</h1>
+        <div class="container mx-auto text-center">
+            <h1 class="text-2xl font-bold">Welcome to Student Management System</h1>
         </div>
     </header>
-    <main class="container mx-auto my-8">
-        <section class="bg-white p-6 rounded shadow-md">
-            <p class="mb-4">Welcome, teacher! To manage your courses and students, please choose one of the options below:</p>
-            <nav class="button-nav flex space-x-4">
-                <a href="login.html" class="bg-custom-1 text-white px-4 py-2 rounded">Login</a>
-                <a href="signup.html" class="bg-custom-2 text-white px-4 py-2 rounded">Sign Up</a>
-            </nav>
+    <main class="flex-grow flex items-center justify-center">
+        <section class="bg-white p-6 rounded shadow-md max-w-lg text-center py-16">
+            <h2 class="text-xl font-semibold mb-4">Welcome, teacher! To manage your courses, choose one of the options below:</h2>
+            <div class="flex justify-center space-x-4">
+                <button onclick="window.location.href='login.html'" class="bg-custom-1 text-white px-4 py-2 rounded">Teacher Login</button>
+                <button onclick="window.location.href='signup.html'" class="bg-custom-2 text-white px-4 py-2 rounded">Teacher Sign up</button>
+            </div>
         </section>
     </main>
-    <footer class="bg-custom-1 text-white p-4 mt-8">
+    <footer class="bg-custom-2 text-white p-4 text-center mt-auto">
         <div class="container mx-auto">
             <p>&copy; 2024 Student Management System</p>
         </div>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>

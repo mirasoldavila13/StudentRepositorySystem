@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students - Dashboard</title>
+    <title>Courses - Student Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+       tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        '2xs': '320px',
+                        'xs': '480px',
+                        'sm': '550px',
+                        'md': '800px',
+                        'lg': '1200px',
+                        'xl': '1440px',
+                    },
+                },
+            },
+        }
+    </script>
     <style>
         .bg-custom-1 { background-color: #9f1239; }
         .bg-custom-2 { background-color: #881337; }
@@ -24,10 +41,10 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
     <header class="bg-custom-1 text-white p-4">
         <div class="container mx-auto text-center">
-            <h1 class="text-2xl font-bold">Student Management Dashboard</h1>
+            <h1 class="text-2xl font-bold">Student Management System</h1>
             <nav class="center-nav">
                 <ul>
                     <li><a href="dashboard.html">Dashboard</a></li>
@@ -38,32 +55,27 @@
         </div>
     </header>
     
-    <main class="container mx-auto my-8">
-        <section class="student-list center-content">
-            <div class="w-full max-w-5xl">
-                <h3 class="text-2xl font-semibold mb-4 text-center">Professor Inferno's Courses</h3>
-                <table class="w-full bg-white rounded shadow">
-                    <thead class="bg-gray-100 border-b border-gray-300">
-                        <tr>
-                            <th class="text-left px-4 py-2">Student ID</th>
-                            <th class="text-left px-4 py-2">Student Name</th>
-                            <th class="text-left px-4 py-2">Email</th>
-                            <th class="text-left px-4 py-2">Phone Number</th>
-                            <th class="text-left px-4 py-2">Amount of Courses</th>
-                            <th class="text-left px-4 py-2">Course's IDs</th>
-                            <th class="text-left px-4 py-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                        <!-- Rows will be dynamically added here -->
-                    </tbody>
-                </table>
-            </div>
+    <main class="container mx-auto my-8 flex-grow flex flex-col justify-start items-center">
+        <section class="student-list w-full max-w-7xl">
+            <h3 class="text-2xl font-semibold mb-4 text-center mt-[-1.5rem]">Professor Inferno's Courses</h3>
+            <table class="w-full bg-white rounded shadow">
+                <thead class="bg-gray-100 border-b border-gray-300">
+                    <tr>
+                        <th class="text-left px-4 py-2">Course ID</th>
+                        <th class="text-left px-4 py-2">Course Name</th>
+                        <th class="text-left px-4 py-2">Amount of Students</th>
+                        <th class="text-left px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="dashboardCourseTableBody">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
         </section>
     </main>
     
-    <footer class="bg-custom-1 text-white p-4 mt-8">
-        <div class="container mx-auto text-center">
+    <footer class="bg-custom-1 text-white p-4 text-center mt-auto">
+        <div class="container mx-auto">
             <p>&copy; 2024 Student Management System</p>
         </div>
     </footer>
@@ -84,6 +96,11 @@
     </div>
 
     <script src="common.js"></script>
-    <script src="students.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLocalStorage();
+            displayAllCourses('dashboardCourseTableBody');
+        });
+    </script>
 </body>
 </html>

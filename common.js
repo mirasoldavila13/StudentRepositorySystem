@@ -9,7 +9,20 @@ function initializeLocalStorage() {
             { id: 4, name: 'Exploring Computer Science', studentCount: 6 },
             { id: 5, name: 'Physics 201', studentCount: 3 },
             { id: 6, name: 'Chemistry 202', studentCount: 3 },
-            { id: 7, name: 'Literature 101', studentCount: 2 }
+            { id: 7, name: 'Literature 101', studentCount: 2 },
+            { id: 8, name: 'Art 110', studentCount: 4 },
+            { id: 9, name: 'Biology 203', studentCount: 5 },
+            { id: 10, name: 'Geography 104', studentCount: 3 },
+            { id: 11, name: 'Philosophy 101', studentCount: 2 },
+            { id: 12, name: 'Economics 201', studentCount: 4 },
+            { id: 13, name: 'Music 105', studentCount: 3 },
+            { id: 14, name: 'Astronomy 202', studentCount: 2 },
+            { id: 15, name: 'Statistics 301', studentCount: 6 },
+            { id: 16, name: 'Programming 101', studentCount: 5 },
+            { id: 17, name: 'Environmental Science 102', studentCount: 4 },
+            { id: 18, name: 'Psychology 103', studentCount: 3 },
+            { id: 19, name: 'Sociology 202', studentCount: 4 },
+            { id: 20, name: 'Political Science 301', studentCount: 2 }
         ]));
     }
 
@@ -28,7 +41,10 @@ function initializeLocalStorage() {
             { id: 11, name: 'Diana Prince', email: 'diana.prince@themyscira.com', phone: '555-7777', courseIds: [3, 4, 6] },
             { id: 12, name: 'Natasha Romanoff', email: 'natasha.romanoff@shield.com', phone: '555-6666', courseIds: [2, 5, 6] },
             { id: 13, name: 'Steve Rogers', email: 'steve.rogers@avengers.com', phone: '555-5555', courseIds: [1, 3, 6] },
-            { id: 14, name: 'Wanda Maximoff', email: 'wanda.maximoff@avengers.com', phone: '555-4444', courseIds: [4, 5, 7] }
+            { id: 14, name: 'Wanda Maximoff', email: 'wanda.maximoff@avengers.com', phone: '555-4444', courseIds: [4, 5, 7] },
+            { id: 15, name: 'Barry Allen', email: 'barry.allen@ccpd.com', phone: '555-3333', courseIds: [8, 9, 18] },
+            { id: 16, name: 'Oliver Queen', email: 'oliver.queen@qc.com', phone: '555-2222', courseIds: [10, 11, 19] },
+            { id: 17, name: 'Bruce Banner', email: 'bruce.banner@avengers.com', phone: '555-1111', courseIds: [12, 13, 20] }
         ]));
     }
 
