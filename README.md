@@ -94,8 +94,20 @@ The project includes several modal prompts to enhance user interaction:
 ### Sign Up Page
 ![Sign Up Page](https://mirasoldavila13.github.io/StudentRepositorySystem/sign_up_page.png)
 
+### Sign up Page - Modal Error
+![Sign Up Modal Error Page](https://mirasoldavila13.github.io/StudentRepositorySystem/signup_modal_error.png)
+
+### Sign up Page - Modal Success
+![Sign Up Modal Success](https://mirasoldavila13.github.io/StudentRepositorySystem/signup_modal_success.png)
+
 ### Login Page
 ![Login Page](https://mirasoldavila13.github.io/StudentRepositorySystem/login_page.png)
+
+### Login Page - Modal Error
+![Login Page Error Page](https://mirasoldavila13.github.io/StudentRepositorySystem/login_modal_error.png)
+
+### Login Page - Modal Success
+![Login Page Sucess Page](https://mirasoldavila13.github.io/StudentRepositorySystem/login_modal_success.png)
 
 ### Dashboard Part 1
 ![Dashboard Part 1](https://mirasoldavila13.github.io/StudentRepositorySystem/dashboard_part1.png)
@@ -106,11 +118,37 @@ The project includes several modal prompts to enhance user interaction:
 ### Add Student Page
 ![Add Student Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_student_page.png)
 
+### Add Student Modal Error
+![Add Student Error Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_student_modal_errpr.png)
+
+### Add Student Modal Success
+![Add Student Success Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_student_modal_success.png)
+
+### Edit Student Modal
+![Edit Student Modal](https://mirasoldavila13.github.io/StudentRepositorySystem/edit_student.png)
+
+### Delete Student Modal Sucess
+![Delete Student Modal Sucess](https://mirasoldavila13.github.io/StudentRepositorySystem/delete_student_modal_1.png)
+
 ### Add Course Page
 ![Add Course Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_course_page.png)
 
+### Add Course Modal Error Part 1
+![Add Course Error Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_course_error1.png)
+
+### Add Course Modal Error Part 2
+![Add Course Error Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_course_error2.png)
+
+### Add Course Modal Success
+![Add Course Sucess Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_course_success.png)
+
+### Delete Course Modal Success
+![Delete Course Success Modal](https://mirasoldavila13.github.io/StudentRepositorySystem/delete_course_success.png)
+
 ### Student Page
 ![Student Page](https://mirasoldavila13.github.io/StudentRepositorySystem/student_page.png)
+
+
 
 ### Course Page
 ![Course Page](https://mirasoldavila13.github.io/StudentRepositorySystem/course_page.png)
