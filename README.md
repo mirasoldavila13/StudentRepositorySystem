@@ -116,7 +116,7 @@ The project includes several modal prompts to enhance user interaction:
 ![Course Page](StudentRepositorySystem/course_page.png)
 
 ## Link to Deployed Application
-[Link to Deployed Application](#)
+[Link to Deployed Application](https://bhanusreek85.github.io/StudentRepositorySystem/)
 
 ## Installation and Usage
 To run the project locally:
