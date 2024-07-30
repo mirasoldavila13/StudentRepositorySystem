@@ -89,34 +89,34 @@ The project includes several modal prompts to enhance user interaction:
 
 ## Screenshots
 ### Landing Page
-![Landing Page](bhanusreek85/StudentRepositorySystem/landing_page.png)
+![Landing Page](https://mirasoldavila13.github.io/StudentRepositorySystem/landing_page.png)
 
 ### Sign Up Page
-![Sign Up Page](bhanusreek85/StudentRepositorySystem/sign_up_page.png)
+![Sign Up Page](https://mirasoldavila13.github.io/StudentRepositorySystem/sign_up_page.png)
 
 ### Login Page
-![Login Page](bhanusreek85/StudentRepositorySystem/login_page.png)
+![Login Page](https://mirasoldavila13.github.io/StudentRepositorySystem/login_page.png)
 
 ### Dashboard Part 1
-![Dashboard Part 1](bhanusreek85/StudentRepositorySystem/dashboard_part1.png)
+![Dashboard Part 1](https://mirasoldavila13.github.io/StudentRepositorySystem/dashboard_part1.png)
 
 ### Dashboard Part 2
-![Dashboard Part 2](bhanusreek85/StudentRepositorySystem/dashboard_part2.png)
+![Dashboard Part 2](https://mirasoldavila13.github.io/StudentRepositorySystem/dashboard_part2.png)
 
 ### Add Student Page
-![Add Student Page](bhanusreek85/StudentRepositorySystem/add_student_page.png)
+![Add Student Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_student_page.png)
 
 ### Add Course Page
-![Add Course Page](bhanusreek85/StudentRepositorySystem/add_course_page.png)
+![Add Course Page](https://mirasoldavila13.github.io/StudentRepositorySystem/add_course_page.png)
 
 ### Student Page
-![Student Page](bhanusreek85/StudentRepositorySystem/student_page.png)
+![Student Page](https://mirasoldavila13.github.io/StudentRepositorySystem/student_page.png)
 
 ### Course Page
-![Course Page](bhanusreek85/StudentRepositorySystem/course_page.png)
+![Course Page](https://mirasoldavila13.github.io/StudentRepositorySystem/course_page.png)
 
 ## Link to Deployed Application
-[Link to Deployed Application](https://bhanusreek85.github.io/StudentRepositorySystem/)
+[Link to Deployed Application](https://mirasoldavila13.github.io/StudentRepositorySystem/)
 
 ## Installation and Usage
 To run the project locally:
