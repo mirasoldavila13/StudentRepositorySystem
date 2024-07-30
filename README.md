@@ -89,31 +89,31 @@ The project includes several modal prompts to enhance user interaction:
 
 ## Screenshots
 ### Landing Page
-![Landing Page](path/to/landing_page.png)
+![Landing Page](StudentRepositorySystem/landing_page.png)
 
 ### Sign Up Page
-![Sign Up Page](path/to/sign_up_page.png)
+![Sign Up Page](StudentRepositorySystem/sign_up_page.png)
 
 ### Login Page
-![Login Page](path/to/login_page.png)
+![Login Page](StudentRepositorySystem/login_page.png)
 
 ### Dashboard Part 1
-![Dashboard Part 1](path/to/dashboard_part1.png)
+![Dashboard Part 1](StudentRepositorySystem/dashboard_part1.png)
 
 ### Dashboard Part 2
-![Dashboard Part 2](path/to/dashboard_part2.png)
+![Dashboard Part 2](StudentRepositorySystem/dashboard_part2.png)
 
 ### Add Student Page
-![Add Student Page](path/to/add_student_page.png)
+![Add Student Page](StudentRepositorySystem/add_student_page.png)
 
 ### Add Course Page
-![Add Course Page](path/to/add_course_page.png)
+![Add Course Page](StudentRepositorySystem/add_course_page.png)
 
 ### Student Page
-![Student Page](path/to/student_page.png)
+![Student Page](StudentRepositorySystem/student_page.png)
 
 ### Course Page
-![Course Page](path/to/course_page.png)
+![Course Page](StudentRepositorySystem/course_page.png)
 
 ## Link to Deployed Application
 [Link to Deployed Application](#)
